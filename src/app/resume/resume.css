@@ -1,0 +1,282 @@
+.resume-root {
+  --ink: #111111;
+  --ink-soft: #3d3d3d;
+  --rule: #111111;
+  --paper: #ffffff;
+  --sheet-width: 8.5in;
+  --sheet-pad: 0.62in;
+
+  background: #e9e9ec;
+  min-height: 100vh;
+  padding: 2.5rem 1rem 4rem;
+  color: var(--ink);
+}
+
+.resume-sheet {
+  background: var(--paper);
+  color: var(--ink);
+  width: 100%;
+  max-width: var(--sheet-width);
+  margin: 0 auto;
+  padding: var(--sheet-pad);
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-body), "Century Gothic", system-ui, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.42;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+/* globals.css colors h1-h6 and p directly, which beats the sheet's inherited
+   ink and tints the page with the site's purple in dark mode. :where() keeps
+   this at class specificity so the rules below still win. */
+.resume-sheet :where(h1, h2, h3, p, ul, li, strong, span, a) {
+  color: inherit;
+  margin: 0;
+}
+
+.resume-masthead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+}
+
+.resume-name {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  font-size: 2.9rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.resume-contact {
+  margin: 0;
+  font-size: 10pt;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.resume-contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.resume-contact a:hover {
+  text-decoration: underline;
+}
+
+.resume-sep {
+  padding: 0 0.3rem;
+}
+
+.resume-summary {
+  margin: 0.15rem 0 0;
+  text-align: left;
+  color: var(--ink);
+}
+
+.resume-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  break-inside: auto;
+}
+
+.resume-section-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  font-size: 1.32rem;
+  line-height: 1.1;
+  margin: 0;
+  padding-bottom: 0.12rem;
+  border-bottom: 1.5px solid var(--rule);
+}
+
+.resume-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.resume-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  break-inside: avoid;
+}
+
+.resume-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.resume-entry-primary {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.resume-entry-secondary {
+  color: var(--ink-soft);
+}
+
+.resume-entry-meta {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+.resume-bullets {
+  list-style: disc;
+  margin: 0.25rem 0 0;
+  padding-left: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.16rem;
+}
+
+.resume-bullets li {
+  padding-left: 0.15rem;
+}
+
+.resume-bullets strong {
+  font-weight: 700;
+}
+
+.resume-stack {
+  margin: 0.3rem 0 0;
+  font-size: 9.5pt;
+  color: var(--ink-soft);
+}
+
+.resume-additional {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.resume-additional-row {
+  margin: 0;
+}
+
+.resume-additional-row strong {
+  font-weight: 700;
+}
+
+.resume-actions {
+  max-width: var(--sheet-width);
+  margin: 0 auto 1.1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.resume-print-button {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: #111111;
+  border: 1px solid #111111;
+  border-radius: 4px;
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.resume-print-button:hover {
+  background: #ffffff;
+  color: #111111;
+}
+
+.resume-print-button:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .resume-sheet {
+    padding: 1.25rem;
+    font-size: 10pt;
+  }
+
+  .resume-name {
+    font-size: 2.1rem;
+  }
+
+  .resume-entry-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .resume-entry-meta {
+    white-space: normal;
+  }
+}
+
+@page {
+  size: letter;
+  margin: 0.5in;
+}
+
+@media print {
+  .resume-root {
+    background: #ffffff;
+    padding: 0;
+    min-height: 0;
+  }
+
+  .resume-sheet {
+    max-width: none;
+    width: 100%;
+    padding: 0;
+    box-shadow: none;
+    font-size: 9.4pt;
+    line-height: 1.33;
+    gap: 0.55rem;
+  }
+
+  .resume-actions {
+    display: none;
+  }
+
+  .resume-name {
+    font-size: 2.05rem;
+  }
+
+  .resume-section {
+    gap: 0.35rem;
+  }
+
+  .resume-section-title {
+    font-size: 1.12rem;
+  }
+
+  .resume-entries {
+    gap: 0.5rem;
+  }
+
+  .resume-bullets {
+    margin-top: 0.12rem;
+    gap: 0.04rem;
+  }
+
+  .resume-stack {
+    margin-top: 0.15rem;
+    font-size: 8.6pt;
+  }
+
+  .resume-contact {
+    font-size: 9pt;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
