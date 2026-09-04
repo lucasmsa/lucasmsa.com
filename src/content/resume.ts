@@ -49,8 +49,6 @@ export const roles: Role[] = [
     bullets: [
       {
         text: "Built the mobile app from scratch and still own it, from the first commit through every release",
-        metric: "183 of the app's 240 commits",
-        highlight: true,
       },
       {
         text: "Shipped an OpenAI support-ticket classifier that routes by reason in production, scored daily against human experts",
@@ -63,13 +61,7 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: "Built photo medication capture: a member photographs the box, the name, presentation and concentration come back extracted, and a verify step confirms them before the entry wizard resumes",
-      },
-      {
-        text: "Built voice-filled medical records: recording with live level metering fills the health-habits sections, with a confirmation sheet before anything is saved",
-      },
-      {
-        text: "Set the technical foundation: Expo and React Native, Apollo GraphQL with a persisted cache, Zustand, Nativewind, TanStack Form, Sentry, and a Jest and React Native Testing Library suite",
+        text: "Built the capture paths that get a medical record filled without typing: photographing a medicine box returns its name, presentation and concentration for confirmation, and dictation fills the health-habits sections",
       },
     ],
     stack: [
@@ -186,11 +178,11 @@ export const projects: Project[] = [
     url: "github.com/lucasmsa/coast-to-cup",
   },
   {
-    name: "claude-checkpoint-diagram",
+    name: "Arkham Theme",
     tagline:
-      "Published Claude Code plugin that draws a Mermaid checkpoint diagram at each pause in an agent run",
-    stack: ["Go", "Mermaid"],
-    url: "github.com/lucasmsa/claude-checkpoint-diagram",
+      "Dark VS Code theme, 24,000+ installs on the marketplace at 5.0 stars",
+    stack: ["VS Code"],
+    url: "github.com/lucasmsa/arkham-theme",
   },
   {
     name: "vscodethemes-scrapper",

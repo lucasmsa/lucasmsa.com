@@ -91,11 +91,23 @@ export function useLetterPhysics() {
         cursor += cw;
       });
 
+      // The ceiling sits far above so letters can fall in from off-screen, and drops
+      // flush with the top edge under zero gravity so they cannot drift out of frame.
+      const CEILING_PARKED = -h * 2 - WALL / 2;
+      const CEILING_CLOSED = -WALL / 2;
+      const ceiling = Matter.Bodies.rectangle(
+        w / 2,
+        CEILING_PARKED,
+        w + WALL * 2,
+        WALL,
+        { isStatic: true },
+      );
+
       const walls = [
         Matter.Bodies.rectangle(w / 2, h + WALL / 2, w + WALL * 2, WALL, { isStatic: true }),
         Matter.Bodies.rectangle(-WALL / 2, h / 2, WALL, h * 6, { isStatic: true }),
         Matter.Bodies.rectangle(w + WALL / 2, h / 2, WALL, h * 6, { isStatic: true }),
-        Matter.Bodies.rectangle(w / 2, -h * 2 - WALL / 2, w + WALL * 2, WALL, { isStatic: true }),
+        ceiling,
       ];
 
       Matter.Composite.add(engine.world, [...walls, ...glyphs.map((g) => g.body)]);
@@ -109,6 +121,7 @@ export function useLetterPhysics() {
       Matter.Composite.add(engine.world, drag);
 
       dropRef.current = () => {
+        Matter.Body.setPosition(ceiling, { x: w / 2, y: CEILING_PARKED });
         glyphs.forEach((g, i) => {
           Matter.Body.setPosition(g.body, {
             x: (w - total) / 2 + widths.slice(0, i).reduce((a, b) => a + b, 0),
@@ -122,6 +135,10 @@ export function useLetterPhysics() {
 
       gravityRef.current = (off: boolean) => {
         engine.gravity.y = off ? -0.06 : 1;
+        Matter.Body.setPosition(ceiling, {
+          x: w / 2,
+          y: off ? CEILING_CLOSED : CEILING_PARKED,
+        });
         // A nudge so nothing hangs perfectly still when the floor stops mattering.
         glyphs.forEach(({ body }) =>
           Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.06),

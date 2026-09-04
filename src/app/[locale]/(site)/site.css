@@ -18,6 +18,20 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-logo {
+  width: auto;
+  height: 2.1rem;
+  opacity: 0.92;
+  transition: opacity 0.15s ease;
+}
+
+.nav-mark:hover .nav-logo {
+  opacity: 1;
 }
 
 .nav-links {

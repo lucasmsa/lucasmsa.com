@@ -33,7 +33,7 @@
       "coast-to-cup": "Which 2026 World Cup group has the worst logistics: travel, circadian shift, altitude and heat, modelled against a base camp.",
       "hiit-maker": "Interval training builder, rebuilt on Vite and React 19 as an offline-installable PWA with a gym mode.",
       "vscodethemes-scrapper": "Scrapes the VS Code themes marketplace into a database, then classifies the themes.",
-      "arkham-theme": "A VS Code dark theme based on Transylvania and Mayukai.",
+      "arkham-theme": "Dark VS Code theme with 24,000+ installs on the marketplace, based on Transylvania and Mayukai.",
       "pixel-algorithms": "Grid algorithms you can scrub through: A*, flood fill, Bresenham, dithering, marching squares.",
       "claude-checkpoint-diagram": "Claude Code plugin that draws a Mermaid checkpoint diagram at each pause in a run.",
       "claude-doc-tdd": "Claude Code plugin. TDD for facts: an executable check per claim before anything is published.",
