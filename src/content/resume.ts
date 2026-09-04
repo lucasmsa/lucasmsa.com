@@ -1,6 +1,8 @@
 export type Bullet = {
   text: string;
   metric?: string;
+  /** Only the few numbers worth stopping on render bold. */
+  highlight?: boolean;
 };
 
 export type Role = {
@@ -24,7 +26,7 @@ export type Project = {
 export const profile = {
   name: "Lucas Moreira e Silva Alves",
   shortName: "Lucas Moreira",
-  title: "Software Engineer",
+  title: "Product Engineer",
   location: "João Pessoa, Brazil",
   email: "lmsa.moreira@gmail.com",
   phone: "+55 (83) 99106-7863",
@@ -32,38 +34,52 @@ export const profile = {
   linkedin: "linkedin.com/in/lucasmsa",
   site: "lucasmsa.com",
   summary:
-    "Full-stack engineer with 5+ years across TypeScript, React, Ruby on Rails, Node.js and Python. Works on the parts of a codebase most people avoid: build systems, circular dependency graphs, test coverage on mature Rails apps, and production incidents.",
+    "Product engineer with 5+ years across TypeScript, React Native, Ruby on Rails and Python. Builds products end to end, from the first commit to the AI features running in production, and takes on the parts of a codebase most people avoid.",
 };
 
 export const roles: Role[] = [
   {
     company: "Koltin",
-    title: "Software Engineer, Backend",
-    location: "Remote",
+    title: "Product Engineer",
+    location: "Mexico City (remote)",
     start: "Aug 2025",
     end: "Present",
-    summary: "Backend for the sales domain of an eldercare platform.",
-    bullets: [
-      {
-        text: "Owns the sales domain of the backend, running the service and its dependencies on Docker",
-      },
-    ],
-    stack: ["TypeScript", "Docker", "PostgreSQL"],
-  },
-  {
-    company: "Daduca",
-    title: "Co-founder & Software Engineer",
-    location: "Remote",
-    start: "Apr 2025",
-    end: "Present",
     summary:
-      "Text-centric e-learning platform for data engineering, built end to end.",
+      "Insurance and preventive care that keeps Mexican seniors independent for longer.",
     bullets: [
       {
-        text: "Built an embedded IDE with sandboxed execution through Judge0, plus LLM-driven validation that grades free-form answers instead of matching strings",
+        text: "Built the mobile app from scratch and still own it, from the first commit through every release",
+        metric: "183 of the app's 240 commits",
+        highlight: true,
+      },
+      {
+        text: "Shipped an OpenAI support-ticket classifier that routes by reason in production, scored daily against human experts",
+        metric: "Over 90% accuracy",
+        highlight: true,
+      },
+      {
+        text: "Took a WhatsApp integration on the Meta Business API from investigation and ADR through production rollout",
+        metric: "Account-activation tickets down 63% in 3 weeks",
+        highlight: true,
+      },
+      {
+        text: "Built photo medication capture: a member photographs the box, the name, presentation and concentration come back extracted, and a verify step confirms them before the entry wizard resumes",
+      },
+      {
+        text: "Built voice-filled medical records: recording with live level metering fills the health-habits sections, with a confirmation sheet before anything is saved",
+      },
+      {
+        text: "Set the technical foundation: Expo and React Native, Apollo GraphQL with a persisted cache, Zustand, Nativewind, TanStack Form, Sentry, and a Jest and React Native Testing Library suite",
       },
     ],
-    stack: ["Next.js", "Vite", "FastAPI", "Judge0", "AWS"],
+    stack: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Apollo GraphQL",
+      "Zustand",
+      "OpenAI",
+    ],
   },
   {
     company: "TapGoods",
@@ -76,40 +92,20 @@ export const roles: Role[] = [
     bullets: [
       {
         text: "Replaced Create React App, Webpack and Babel with Vite and SWC, and dropped 80+ stale dependencies",
-        metric: "Boot time −80%, production builds −60%",
+        metric: "Boot time down 80%, production builds down 60%",
+        highlight: true,
       },
       {
-        text: "Untangled deeply coupled modules and upgraded React Redux, Apollo Client and Axios",
-        metric: "1,500+ circular dependencies removed",
+        text: "Migrated the front-end to TypeScript and untangled deeply coupled modules, deleting 5,700+ lines of JavaScript and removing 1,500+ circular dependencies",
       },
       {
-        text: "Migrated the front-end to TypeScript, deleting JavaScript as types landed",
-        metric: "5,700+ lines deleted, codebase −10%",
+        text: "Wrote 2,000+ RSpec tests across features in a mature Rails codebase, about 10% of all test additions",
       },
       {
-        text: "Wrote RSpec coverage across features in a mature Rails codebase",
-        metric: "2,000+ tests, ~10% of all test additions",
-      },
-      {
-        text: "Diagnosed and shipped critical production hotfixes using Datadog, Airbrake and the Rails console",
-        metric: "Under 1 hour to fix, lowering MTTR",
-      },
-      {
-        text: "Engineered subrental and missing-inventory tracking, server-side rendering for SEO, and accessible auto-contrast theming",
-      },
-      {
-        text: "Acted as the team's front-end reference: mentored engineers, reviewed PRs in depth and unblocked cross-functional work",
+        text: "Shipped critical production hotfixes in under an hour with Datadog and Airbrake, and acted as the team's front-end reference in reviews and architecture",
       },
     ],
-    stack: [
-      "React",
-      "TypeScript",
-      "Ruby on Rails",
-      "Vite",
-      "redux-observable",
-      "RSpec",
-      "Datadog",
-    ],
+    stack: ["React", "TypeScript", "Ruby on Rails", "Vite", "RSpec", "Datadog"],
   },
   {
     company: "Ília",
@@ -138,35 +134,6 @@ export const roles: Role[] = [
       "Strapi",
       "Storybook",
       "Jest",
-    ],
-  },
-  {
-    company: "iCods Tech",
-    title: "Co-founder & Software Engineer",
-    location: "João Pessoa, Brazil",
-    start: "Aug 2020",
-    end: "Aug 2022",
-    summary:
-      "Startup of 3 engineers and 1 designer. QR codes carrying edited video as digital gift cards, shipped to the app stores.",
-    bullets: [
-      {
-        text: "Published the React Native app and built the Node.js API behind it, with TypeORM, tsyringe dependency injection and the repository pattern",
-      },
-      {
-        text: "Ran video concatenation on AWS Lambda so mobile clients never did the stitching",
-      },
-      {
-        text: "Built the Next.js business console for printing, batching and monitoring active QR codes",
-      },
-    ],
-    stack: [
-      "React Native",
-      "Node.js",
-      "TypeScript",
-      "TypeORM",
-      "PostgreSQL",
-      "AWS Lambda",
-      "Next.js",
     ],
   },
   {
@@ -205,29 +172,32 @@ export const roles: Role[] = [
 
 export const projects: Project[] = [
   {
-    name: "open-portfolio",
+    name: "crimp-studio",
     tagline:
-      "Elixir MCP server and LiveView dashboard that reads a real brokerage portfolio and answers questions about it",
-    stack: ["Elixir", "Phoenix LiveView", "MCP"],
+      "Climbing wall route setter: draggable 3D holds, procedurally generated routes and full undo/redo history",
+    stack: ["React", "Three.js", "TypeScript"],
+    url: "github.com/lucasmsa/crimp-studio",
+  },
+  {
+    name: "coast-to-cup",
+    tagline:
+      "Which 2026 World Cup group draws the worst logistics, modelling travel, circadian shift, altitude and heat against a base camp",
+    stack: ["React Three Fiber", "Python", "Go"],
+    url: "github.com/lucasmsa/coast-to-cup",
   },
   {
     name: "claude-checkpoint-diagram",
     tagline:
-      "Published Claude Code plugin that renders Mermaid checkpoints at agent pauses",
-    stack: ["TypeScript", "Mermaid"],
+      "Published Claude Code plugin that draws a Mermaid checkpoint diagram at each pause in an agent run",
+    stack: ["Go", "Mermaid"],
     url: "github.com/lucasmsa/claude-checkpoint-diagram",
   },
   {
-    name: "HIIT Maker",
+    name: "hiit-maker",
     tagline:
-      "Interval training builder from 2021, rebuilt on Vite and React 19 with an offline-installable PWA and a gym mode",
+      "Interval training builder rebuilt on Vite and React 19 as an offline-installable PWA with a gym mode",
     stack: ["React 19", "Vite", "Zustand", "Playwright"],
-  },
-  {
-    name: "crimp-studio",
-    tagline:
-      "Climbing wall route setter with draggable 3D holds and undo/redo history",
-    stack: ["React", "Three.js", "TypeScript"],
+    url: "github.com/lucasmsa/hiit-maker",
   },
 ];
 

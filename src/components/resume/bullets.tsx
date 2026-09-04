@@ -6,7 +6,11 @@ export function Bullets({ items }: { items: Bullet[] }) {
       {items.map((bullet) => (
         <li key={bullet.text}>
           {bullet.text}.{" "}
-          {bullet.metric ? <strong>{bullet.metric}.</strong> : null}
+          {bullet.metric ? (
+            <span className={bullet.highlight ? "resume-metric" : undefined}>
+              {bullet.metric}.
+            </span>
+          ) : null}
         </li>
       ))}
     </ul>

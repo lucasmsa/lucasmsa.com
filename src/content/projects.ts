@@ -2,35 +2,67 @@ export type Project = {
   id: string;
   name: string;
   tags: string[];
-  url?: string;
+  url: string;
 };
 
+const gh = (repo: string) => `https://github.com/lucasmsa/${repo}`;
+
 export const featured: Project[] = [
-  {
-    id: "open-portfolio",
-    name: "open-portfolio",
-    tags: ["Elixir", "Phoenix LiveView", "MCP"],
-  },
   {
     id: "crimp-studio",
     name: "crimp-studio",
     tags: ["React", "Three.js", "TypeScript"],
+    url: gh("crimp-studio"),
   },
   {
-    id: "mandibible",
-    name: "mandibible",
-    tags: ["Three.js", "Python", "CBCT"],
-  },
-  {
-    id: "claude-checkpoint-diagram",
-    name: "claude-checkpoint-diagram",
-    tags: ["TypeScript", "Mermaid"],
-    url: "https://github.com/lucasmsa/claude-checkpoint-diagram",
+    id: "coast-to-cup",
+    name: "coast-to-cup",
+    tags: ["TypeScript", "R3F", "Python"],
+    url: gh("coast-to-cup"),
   },
   {
     id: "hiit-maker",
     name: "hiit-maker",
     tags: ["React 19", "Vite", "Zustand"],
-    url: "https://github.com/lucasmsa/hiit-maker",
+    url: gh("hiit-maker"),
+  },
+  {
+    id: "vscodethemes-scrapper",
+    name: "vscodethemes-scrapper",
+    tags: ["TypeScript", "Puppeteer", "S3"],
+    url: gh("vscodethemes-scrapper"),
+  },
+  {
+    id: "arkham-theme",
+    name: "arkham-theme",
+    tags: ["VS Code"],
+    url: gh("arkham-theme"),
+  },
+  {
+    id: "pixel-algorithms",
+    name: "pixel-algorithms",
+    tags: ["TypeScript", "Canvas"],
+    url: gh("pixel-algorithms"),
+  },
+];
+
+export const claudeWork: Project[] = [
+  {
+    id: "claude-checkpoint-diagram",
+    name: "claude-checkpoint-diagram",
+    tags: ["Go", "Mermaid"],
+    url: gh("claude-checkpoint-diagram"),
+  },
+  {
+    id: "claude-doc-tdd",
+    name: "claude-doc-tdd",
+    tags: ["Python"],
+    url: gh("claude-doc-tdd"),
+  },
+  {
+    id: "trilha-agentica",
+    name: "trilha-agentica",
+    tags: ["pt-BR", "Skills"],
+    url: gh("trilha-agentica"),
   },
 ];

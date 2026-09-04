@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { IndexRow } from "@/components/site/index-row";
-import { featured } from "@/content/projects";
+import { featured, claudeWork } from "@/content/projects";
 import { fetchRepos } from "@/lib/github";
 
 export const revalidate = 86400;
@@ -14,7 +14,8 @@ export default async function ProjectsPage({
   setRequestLocale(locale);
   const t = await getTranslations("projects");
 
-  const featuredNames = new Set(featured.map((project) => project.name));
+  const curated = [...featured, ...claudeWork];
+  const featuredNames = new Set(curated.map((project) => project.name));
   const repos = (await fetchRepos()).filter(
     (repo) => !featuredNames.has(repo.name),
   );
@@ -26,6 +27,22 @@ export default async function ProjectsPage({
         <p className="section-intro">{t("intro")}</p>
         <div className="index">
           {featured.map((project) => (
+            <IndexRow
+              key={project.id}
+              name={project.name}
+              description={t(`items.${project.id}`)}
+              tags={project.tags.join(" · ")}
+              href={project.url}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="shell section">
+        <h2 className="section-title">{t("claude")}</h2>
+        <p className="section-intro">{t("claudeIntro")}</p>
+        <div className="index">
+          {claudeWork.map((project) => (
             <IndexRow
               key={project.id}
               name={project.name}

@@ -14,6 +14,9 @@ export default function ResumePage() {
   return (
     <>
       <div className="resume-actions">
+        <a className="resume-pdf-link" href="/lucas-moreira.pdf" download>
+          Download PDF
+        </a>
         <PrintButton />
       </div>
 

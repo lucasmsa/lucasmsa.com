@@ -3,6 +3,7 @@
   --ink-soft: #3d3d3d;
   --rule: #111111;
   --paper: #ffffff;
+  --serif: "Times New Roman", Times, Georgia, serif;
   --sheet-width: 8.5in;
   --sheet-pad: 0.62in;
 
@@ -20,7 +21,7 @@
   margin: 0 auto;
   padding: var(--sheet-pad);
   box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.5);
-  font-family: var(--font-body), "Century Gothic", system-ui, sans-serif;
+  font-family: var(--serif);
   font-size: 10.5pt;
   line-height: 1.42;
   display: flex;
@@ -45,9 +46,9 @@
 }
 
 .resume-name {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--serif);
   font-weight: 700;
-  font-size: 2.9rem;
+  font-size: 2.6rem;
   line-height: 1;
   letter-spacing: -0.01em;
   margin: 0;
@@ -87,9 +88,9 @@
 }
 
 .resume-section-title {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--serif);
   font-weight: 700;
-  font-size: 1.32rem;
+  font-size: 1.2rem;
   line-height: 1.1;
   margin: 0;
   padding-bottom: 0.12rem;
@@ -118,7 +119,6 @@
 
 .resume-entry-primary {
   font-weight: 700;
-  letter-spacing: 0.01em;
 }
 
 .resume-entry-secondary {
@@ -144,7 +144,7 @@
   padding-left: 0.15rem;
 }
 
-.resume-bullets strong {
+.resume-metric {
   font-weight: 700;
 }
 
@@ -176,8 +176,24 @@
   gap: 0.6rem;
 }
 
+.resume-pdf-link {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  color: #111111;
+  border: 1px solid #111111;
+  border-radius: 4px;
+  padding: 0.5rem 0.95rem;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.resume-pdf-link:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
 .resume-print-button {
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--serif);
   font-size: 0.85rem;
   font-weight: 500;
   color: #ffffff;
@@ -242,6 +258,10 @@
   }
 
   .resume-actions {
+    display: none;
+  }
+
+  .resume-pdf-link {
     display: none;
   }
 

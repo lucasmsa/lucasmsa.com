@@ -22,7 +22,7 @@ export default async function HomePage({
       <section className="shell section">
         <h2 className="section-title">{t("work")}</h2>
         <div className="index">
-          {featured.slice(0, 3).map((project) => (
+          {featured.slice(0, 4).map((project) => (
             <IndexRow
               key={project.id}
               name={project.name}

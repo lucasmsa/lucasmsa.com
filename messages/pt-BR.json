@@ -6,7 +6,7 @@
     "resume": "Currículo"
   },
   "meta": {
-    "now": "Backend, domínio de vendas na Koltin",
+    "now": "Engenheiro de software na Koltin",
     "location": "João Pessoa, Brasil"
   },
   "hero": {
@@ -17,7 +17,8 @@
   "home": {
     "work": "Trabalhos",
     "writing": "Publicações",
-    "allProjects": "Todos os projetos"
+    "allProjects": "Todos os projetos",
+    "claude": "Claude Code"
   },
   "projects": {
     "title": "Projetos",
@@ -26,12 +27,18 @@
     "moreIntro": "Repositórios públicos, dos mais recentes aos mais antigos.",
     "empty": "Nada para mostrar por enquanto.",
     "items": {
-      "open-portfolio": "Servidor MCP em Elixir e painel LiveView sobre uma carteira real de investimentos.",
-      "crimp-studio": "Editor de vias de escalada com agarras 3D arrastáveis e histórico de desfazer e refazer.",
-      "mandibible": "Anatomia da mandíbula renderizada em hachura de grafite, a partir de tomografias CBCT reais.",
-      "claude-checkpoint-diagram": "Plugin do Claude Code que desenha checkpoints em Mermaid nas pausas do agente.",
-      "hiit-maker": "Montador de treinos intervalados, reconstruído em Vite e React 19 como PWA offline."
-    }
+      "crimp-studio": "Editor de vias de escalada com agarras 3D arrastáveis, geração procedural de vias e histórico de desfazer e refazer.",
+      "coast-to-cup": "Qual grupo da Copa de 2026 tem a pior logística: viagem, deslocamento circadiano, altitude e calor, modelados a partir de uma base fixa.",
+      "hiit-maker": "Montador de treinos intervalados, reconstruído em Vite e React 19 como PWA instalável offline, com modo academia.",
+      "vscodethemes-scrapper": "Raspa o marketplace de temas do VS Code para um banco de dados e depois classifica os temas.",
+      "arkham-theme": "Tema escuro para VS Code baseado no Transylvania e no Mayukai.",
+      "pixel-algorithms": "Algoritmos de grade que dá para percorrer passo a passo: A*, flood fill, Bresenham, dithering, marching squares.",
+      "claude-checkpoint-diagram": "Plugin do Claude Code que desenha um diagrama de checkpoints em Mermaid a cada pausa da execução.",
+      "claude-doc-tdd": "Plugin do Claude Code. TDD para fatos: um teste executável por afirmação antes de publicar qualquer coisa.",
+      "trilha-agentica": "Trilha prática de engenharia agêntica em português: skills, hooks, subagents, MCP."
+    },
+    "claude": "Claude Code",
+    "claudeIntro": "Plugins e skills que uso todo dia."
   },
   "writing": {
     "title": "Publicações",

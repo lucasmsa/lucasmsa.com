@@ -79,26 +79,20 @@
 }
 
 .hero-controls {
-  position: absolute;
-  right: 0;
-  bottom: 0;
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  font-size: 0.72rem;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-top: 0.7rem;
+  font-size: 0.7rem;
   color: var(--mut);
-  pointer-events: none;
-  opacity: 0;
+  opacity: 0.55;
   transition: opacity 0.2s ease;
 }
 
-.hero-stage:hover .hero-controls,
-.hero-stage:focus-within .hero-controls {
+.hero:hover .hero-controls,
+.hero-controls:focus-within {
   opacity: 1;
-}
-
-.hero-controls .hero-reset {
-  pointer-events: auto;
 }
 
 .hero-reset {

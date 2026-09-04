@@ -18,15 +18,17 @@ export function Hero() {
           {name}
         </p>
       ) : (
-        <div className="hero-stage" ref={stageRef} onDoubleClick={reset}>
-          <canvas ref={canvasRef} aria-hidden="true" />
+        <>
+          <div className="hero-stage" ref={stageRef} onDoubleClick={reset}>
+            <canvas ref={canvasRef} aria-hidden="true" />
+          </div>
           <div className="hero-controls">
             <span>{t("hint")}</span>
             <button type="button" className="hero-reset" onClick={reset}>
               {t("reset")}
             </button>
           </div>
-        </div>
+        </>
       )}
 
       <div className="lede">

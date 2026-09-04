@@ -6,7 +6,7 @@
     "resume": "Resume"
   },
   "meta": {
-    "now": "Backend, sales domain at Koltin",
+    "now": "Software engineer at Koltin",
     "location": "João Pessoa, Brazil"
   },
   "hero": {
@@ -17,7 +17,8 @@
   "home": {
     "work": "Work",
     "writing": "Writing",
-    "allProjects": "All projects"
+    "allProjects": "All projects",
+    "claude": "Claude Code"
   },
   "projects": {
     "title": "Projects",
@@ -26,12 +27,18 @@
     "moreIntro": "Public repositories, newest first.",
     "empty": "Nothing to show right now.",
     "items": {
-      "open-portfolio": "Elixir MCP server and LiveView dashboard over a real brokerage portfolio.",
-      "crimp-studio": "Climbing wall route setter with draggable 3D holds and undo/redo history.",
-      "mandibible": "Jaw anatomy rendered as graphite hatching, from real CBCT scans.",
-      "claude-checkpoint-diagram": "Claude Code plugin that renders Mermaid checkpoints at agent pauses.",
-      "hiit-maker": "Interval training builder, rebuilt on Vite and React 19 as an offline PWA."
-    }
+      "crimp-studio": "Climbing wall route setter with draggable 3D holds, procedural route generation and undo/redo history.",
+      "coast-to-cup": "Which 2026 World Cup group has the worst logistics: travel, circadian shift, altitude and heat, modelled against a base camp.",
+      "hiit-maker": "Interval training builder, rebuilt on Vite and React 19 as an offline-installable PWA with a gym mode.",
+      "vscodethemes-scrapper": "Scrapes the VS Code themes marketplace into a database, then classifies the themes.",
+      "arkham-theme": "A VS Code dark theme based on Transylvania and Mayukai.",
+      "pixel-algorithms": "Grid algorithms you can scrub through: A*, flood fill, Bresenham, dithering, marching squares.",
+      "claude-checkpoint-diagram": "Claude Code plugin that draws a Mermaid checkpoint diagram at each pause in a run.",
+      "claude-doc-tdd": "Claude Code plugin. TDD for facts: an executable check per claim before anything is published.",
+      "trilha-agentica": "A practical agentic engineering track in Portuguese: skills, hooks, subagents, MCP."
+    },
+    "claude": "Claude Code",
+    "claudeIntro": "Plugins and skills I use every day."
   },
   "writing": {
     "title": "Writing",
