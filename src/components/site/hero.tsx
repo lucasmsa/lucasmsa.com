@@ -7,7 +7,15 @@ import { useLetterPhysics } from "@/hooks/use-letter-physics";
 export function Hero() {
   const t = useTranslations("hero");
   const meta = useTranslations("meta");
-  const { stageRef, canvasRef, reset, reducedMotion, name } = useLetterPhysics();
+  const {
+    stageRef,
+    canvasRef,
+    reset,
+    toggleGravity,
+    weightless,
+    reducedMotion,
+    name,
+  } = useLetterPhysics();
 
   return (
     <section className="shell hero">
@@ -24,6 +32,14 @@ export function Hero() {
           </div>
           <div className="hero-controls">
             <span>{t("hint")}</span>
+            <button
+              type="button"
+              className="hero-reset"
+              onClick={toggleGravity}
+              aria-pressed={weightless}
+            >
+              {weightless ? t("gravityOn") : t("gravityOff")}
+            </button>
             <button type="button" className="hero-reset" onClick={reset}>
               {t("reset")}
             </button>

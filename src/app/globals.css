@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #101012;
-  --fg: #f5f2ed;
-  --mut: #96918a;
-  --line: #2a2926;
-  --acc: #e2593b;
+  --bg: #070a0f;
+  --fg: #e2ecf5;
+  --mut: #78889b;
+  --line: #152030;
+  --acc: #4de1ff;
 
   --measure: 34ch;
   --gutter: clamp(1.25rem, 5vw, 4rem);

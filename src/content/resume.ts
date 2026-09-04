@@ -193,11 +193,11 @@ export const projects: Project[] = [
     url: "github.com/lucasmsa/claude-checkpoint-diagram",
   },
   {
-    name: "hiit-maker",
+    name: "vscodethemes-scrapper",
     tagline:
-      "Interval training builder rebuilt on Vite and React 19 as an offline-installable PWA with a gym mode",
-    stack: ["React 19", "Vite", "Zustand", "Playwright"],
-    url: "github.com/lucasmsa/hiit-maker",
+      "Scrapes theme screenshots across seven languages behind bot detection and partitions them into S3, as the collection stage feeding a theme classifier",
+    stack: ["TypeScript", "Puppeteer", "AWS S3", "Jest"],
+    url: "github.com/lucasmsa/vscodethemes-scrapper",
   },
 ];
 

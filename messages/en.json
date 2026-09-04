@@ -12,7 +12,9 @@
   "hero": {
     "bio": "Engineer. I like <accent>efficient solutions to hard problems</accent>, and interfaces that feel good to use.",
     "hint": "grab the letters",
-    "reset": "reset"
+    "reset": "reset",
+    "gravityOff": "zero gravity",
+    "gravityOn": "restore gravity"
   },
   "home": {
     "work": "Work",

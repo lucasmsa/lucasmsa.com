@@ -12,7 +12,9 @@
   "hero": {
     "bio": "Engenheiro. Gosto de <accent>soluções eficientes para problemas difíceis</accent>, e de interfaces boas de usar.",
     "hint": "arraste as letras",
-    "reset": "recomeçar"
+    "reset": "recomeçar",
+    "gravityOff": "gravidade zero",
+    "gravityOn": "voltar a gravidade"
   },
   "home": {
     "work": "Trabalhos",

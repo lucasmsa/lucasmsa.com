@@ -24,6 +24,8 @@ export function useLetterPhysics() {
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dropRef = useRef<(() => void) | undefined>(undefined);
+  const gravityRef = useRef<((off: boolean) => void) | undefined>(undefined);
+  const [weightless, setWeightless] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -118,6 +120,14 @@ export function useLetterPhysics() {
         });
       };
 
+      gravityRef.current = (off: boolean) => {
+        engine.gravity.y = off ? -0.06 : 1;
+        // A nudge so nothing hangs perfectly still when the floor stops mattering.
+        glyphs.forEach(({ body }) =>
+          Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.06),
+        );
+      };
+
       const draw = () => {
         ctx.clearRect(0, 0, w, h);
         ctx.font = font;
@@ -154,7 +164,26 @@ export function useLetterPhysics() {
     };
   }, [reducedMotion]);
 
-  const reset = useCallback(() => dropRef.current?.(), []);
+  const reset = useCallback(() => {
+    dropRef.current?.();
+    gravityRef.current?.(false);
+    setWeightless(false);
+  }, []);
 
-  return { stageRef, canvasRef, reset, reducedMotion, name: NAME };
+  const toggleGravity = useCallback(() => {
+    setWeightless((off) => {
+      gravityRef.current?.(!off);
+      return !off;
+    });
+  }, []);
+
+  return {
+    stageRef,
+    canvasRef,
+    reset,
+    toggleGravity,
+    weightless,
+    reducedMotion,
+    name: NAME,
+  };
 }
