@@ -19,6 +19,15 @@ type GitHubRepo = {
 const ENDPOINT =
   "https://api.github.com/users/lucasmsa/repos?per_page=100&sort=pushed";
 
+/** Pinned by hand. These win over every rule below, however old or oddly named. */
+const ALWAYS_SHOW = new Set([
+  "edc-ufpb-grade-analyser",
+  "vehicle-identifier",
+  "embedded-systems",
+  "book-finder-app",
+  "simple-genetic-algorithm",
+]);
+
 /** Anything last touched before this is university-era coursework. */
 const ACTIVE_SINCE = Date.parse("2024-01-01");
 
@@ -97,6 +106,7 @@ const EXCLUDED = [
 ];
 
 function isNoise(repo: GitHubRepo) {
+  if (ALWAYS_SHOW.has(repo.name)) return false;
   if (EXCLUDED.some((pattern) => pattern.test(repo.name))) return true;
   if (repo.name.length <= 3) return true;
   if (Date.parse(repo.pushed_at) < ACTIVE_SINCE) return true;
