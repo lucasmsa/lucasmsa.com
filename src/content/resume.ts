@@ -164,11 +164,11 @@ export const roles: Role[] = [
 
 export const projects: Project[] = [
   {
-    name: "crimp-studio",
+    name: "coast-to-cup",
     tagline:
-      "Climbing wall route setter: draggable 3D holds, procedurally generated routes and full undo/redo history",
-    stack: ["React", "Three.js", "TypeScript"],
-    url: "github.com/lucasmsa/crimp-studio",
+      "Which 2026 World Cup group draws the worst logistics, modelling travel, circadian shift, altitude and heat against a base camp",
+    stack: ["React Three Fiber", "Python", "Go"],
+    url: "github.com/lucasmsa/coast-to-cup",
   },
   {
     name: "hiit-maker",
