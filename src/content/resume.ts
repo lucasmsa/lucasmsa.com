@@ -30,7 +30,7 @@ export const profile = {
   phone: "+55 (83) 99106-7863",
   github: "github.com/lucasmsa",
   linkedin: "linkedin.com/in/lucasmsa",
-  site: "lucasmsa.dev",
+  site: "lucasmsa.com",
   summary:
     "Full-stack engineer with 5+ years across TypeScript, React, Ruby on Rails, Node.js and Python. Works on the parts of a codebase most people avoid: build systems, circular dependency graphs, test coverage on mature Rails apps, and production incidents.",
 };
