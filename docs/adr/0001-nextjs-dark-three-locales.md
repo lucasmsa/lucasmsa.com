@@ -13,8 +13,11 @@ Accepted
   further and not deployed.
 - Dark only. No theme toggle, no light palette. `next-themes` stays installed for
   now but nothing renders a switch.
-- Three locales: `en`, `pt-BR`, `es`, through the `next-intl` setup already wired
-  up. Every string ships in all three.
+- Three locales: `en`, `pt-BR`, `es`. Routing is a `[locale]` segment with
+  `localePrefix: "as-needed"`, so English serves from the root and the other two
+  sit under `/pt-BR` and `/es`. Every string ships in all three.
+- Copy lives in `messages/<locale>.json` and nowhere else. No string is inlined in
+  a component.
 - Routes: `/` (home), `/projects`, `/writing`, `/resume`.
 - `/resume` keeps its own visual world: white paper sheet, serif headings, print
   stylesheet targeting letter paper. It does not adopt the site palette or type.
@@ -42,6 +45,11 @@ maintaining a second stylesheet for print.
 
 Every copy edit is three edits. Locale files are the single source for strings, so
 no copy is inlined in components.
+
+`next-intl` was a declared dependency but was never configured: there were no
+message catalogues, no middleware and no locale routing, and the existing language
+switcher only restyled its own buttons. The three locales are therefore new work
+rather than preserved behaviour.
 
 A single-theme design means the canvas, the type contrast and the photo treatment
 get tuned once, against one ground.

@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "writing": "Writing",
+    "resume": "Resume"
+  },
+  "meta": {
+    "now": "Backend, sales domain at Koltin",
+    "location": "João Pessoa, Brazil"
+  },
+  "hero": {
+    "bio": "Engineer. I like <accent>efficient solutions to hard problems</accent>, and interfaces that feel good to use.",
+    "hint": "grab the letters",
+    "reset": "reset"
+  },
+  "home": {
+    "work": "Work",
+    "writing": "Writing",
+    "allProjects": "All projects"
+  },
+  "projects": {
+    "title": "Projects",
+    "intro": "A few things I built because the problem was interesting.",
+    "more": "Everything else",
+    "moreIntro": "Public repositories, newest first.",
+    "empty": "Nothing to show right now.",
+    "items": {
+      "open-portfolio": "Elixir MCP server and LiveView dashboard over a real brokerage portfolio.",
+      "crimp-studio": "Climbing wall route setter with draggable 3D holds and undo/redo history.",
+      "mandibible": "Jaw anatomy rendered as graphite hatching, from real CBCT scans.",
+      "claude-checkpoint-diagram": "Claude Code plugin that renders Mermaid checkpoints at agent pauses.",
+      "hiit-maker": "Interval training builder, rebuilt on Vite and React 19 as an offline PWA."
+    }
+  },
+  "writing": {
+    "title": "Writing",
+    "intro": "Papers and talks.",
+    "paperTitle": "Automation: uma ferramenta para a evolução de um tradutor automático Português-Libras com corpus colaborativo",
+    "paperBlurb": "Collaborative corpus tooling for a Portuguese to Libras machine translator, built at LAVID.",
+    "paperVenue": "SBC Proceedings",
+    "talksTitle": "Information Systems, UFPB Rio Tinto",
+    "talksBlurb": "Two talks given for the Information Systems course.",
+    "talksVenue": "Talks"
+  },
+  "footer": {
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}

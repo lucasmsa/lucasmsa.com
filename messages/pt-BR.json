@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Início",
+    "projects": "Projetos",
+    "writing": "Publicações",
+    "resume": "Currículo"
+  },
+  "meta": {
+    "now": "Backend, domínio de vendas na Koltin",
+    "location": "João Pessoa, Brasil"
+  },
+  "hero": {
+    "bio": "Engenheiro. Gosto de <accent>soluções eficientes para problemas difíceis</accent>, e de interfaces boas de usar.",
+    "hint": "arraste as letras",
+    "reset": "recomeçar"
+  },
+  "home": {
+    "work": "Trabalhos",
+    "writing": "Publicações",
+    "allProjects": "Todos os projetos"
+  },
+  "projects": {
+    "title": "Projetos",
+    "intro": "Algumas coisas que construí porque o problema era interessante.",
+    "more": "Todo o resto",
+    "moreIntro": "Repositórios públicos, dos mais recentes aos mais antigos.",
+    "empty": "Nada para mostrar por enquanto.",
+    "items": {
+      "open-portfolio": "Servidor MCP em Elixir e painel LiveView sobre uma carteira real de investimentos.",
+      "crimp-studio": "Editor de vias de escalada com agarras 3D arrastáveis e histórico de desfazer e refazer.",
+      "mandibible": "Anatomia da mandíbula renderizada em hachura de grafite, a partir de tomografias CBCT reais.",
+      "claude-checkpoint-diagram": "Plugin do Claude Code que desenha checkpoints em Mermaid nas pausas do agente.",
+      "hiit-maker": "Montador de treinos intervalados, reconstruído em Vite e React 19 como PWA offline."
+    }
+  },
+  "writing": {
+    "title": "Publicações",
+    "intro": "Artigos e palestras.",
+    "paperTitle": "Automation: uma ferramenta para a evolução de um tradutor automático Português-Libras com corpus colaborativo",
+    "paperBlurb": "Ferramenta de corpus colaborativo para um tradutor automático Português-Libras, feita no LAVID.",
+    "paperVenue": "Anais da SBC",
+    "talksTitle": "Sistemas de Informação, UFPB Rio Tinto",
+    "talksBlurb": "Duas palestras para o curso de Sistemas de Informação.",
+    "talksVenue": "Palestras"
+  },
+  "footer": {
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}
