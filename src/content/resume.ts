@@ -61,7 +61,7 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: "Took the typing out of onboarding, where every new member has to complete a long health questionnaire on a phone: photographing a medicine box fills in its name, presentation and concentration, and speaking fills the health and habits answers",
+        text: "Built voice entry for the health and habits section of the medical record, so a member can speak those answers instead of typing them on a phone, and photo capture that reads a medicine box's name, presentation and concentration",
       },
     ],
     stack: [
