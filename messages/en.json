@@ -36,8 +36,7 @@
       "arkham-theme": "Dark VS Code theme with 24,000+ installs on the marketplace, based on Transylvania and Mayukai.",
       "pixel-algorithms": "Grid algorithms you can scrub through: A*, flood fill, Bresenham, dithering, marching squares.",
       "claude-checkpoint-diagram": "Claude Code plugin that draws a Mermaid checkpoint diagram at each pause in a run.",
-      "claude-doc-tdd": "Claude Code plugin. TDD for facts: an executable check per claim before anything is published.",
-      "trilha-agentica": "A practical agentic engineering track in Portuguese: skills, hooks, subagents, MCP."
+      "claude-doc-tdd": "Claude Code plugin. TDD for facts: an executable check per claim before anything is published."
     },
     "claude": "Claude Code",
     "claudeIntro": "Plugins and skills I use every day."

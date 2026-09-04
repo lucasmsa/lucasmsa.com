@@ -19,6 +19,26 @@ type GitHubRepo = {
 const ENDPOINT =
   "https://api.github.com/users/lucasmsa/repos?per_page=100&sort=pushed";
 
+/** Anything last touched before this is university-era coursework. */
+const ACTIVE_SINCE = Date.parse("2024-01-01");
+
+/** Descriptions that announce the repo is graded groupwork rather than a project. */
+const NOISE_DESCRIPTIONS = [
+  /em grupo/i,
+  /realizad[ao]/i,
+  /trabalho final/i,
+  /disciplina/i,
+  /final project/i,
+  /bootcamp/i,
+  /rocketseat/i,
+  /\bignite\b/i,
+  /\bcourse\b/i,
+  /challenge/i,
+  /assess?ment/i,
+  /technical (test|evaluation|evalutation)/i,
+  /interview question/i,
+];
+
 /** Coursework, bootcamp modules and hiring take-homes: written to be graded, not to be read. */
 const EXCLUDED = [
   /^gostack/i,
@@ -60,14 +80,29 @@ const EXCLUDED = [
   /^machine-backup$/i,
   /^lucasmsa$/i,
   /^lucasmsa\.com$/i,
+  /^trilha-agentica$/i,
+  /\.github\.io$/i,
+  /^lista/i,
+  /-lp\d/i,
+  /^lp\d$/i,
+  /^cl\d$/i,
+  /^bd$/i,
+  /^cvrp/i,
+  /^computer-architecture$/i,
+  /^projeto-/i,
   /^simple-crud-application$/i,
   /^book-finder-app$/i,
   /^musify$/i,
   /mostrando-pra-gabriel/i,
 ];
 
-function isNoise(name: string) {
-  return EXCLUDED.some((pattern) => pattern.test(name));
+function isNoise(repo: GitHubRepo) {
+  if (EXCLUDED.some((pattern) => pattern.test(repo.name))) return true;
+  if (repo.name.length <= 3) return true;
+  if (Date.parse(repo.pushed_at) < ACTIVE_SINCE) return true;
+  return NOISE_DESCRIPTIONS.some((pattern) =>
+    pattern.test(repo.description ?? ""),
+  );
 }
 
 export async function fetchRepos(): Promise<Repo[]> {
@@ -83,7 +118,7 @@ export async function fetchRepos(): Promise<Repo[]> {
   return repos
     .filter(
       (repo) =>
-        !repo.fork && !repo.archived && repo.description && !isNoise(repo.name),
+        !repo.fork && !repo.archived && repo.description && !isNoise(repo),
     )
     .map((repo) => ({
       name: repo.name,

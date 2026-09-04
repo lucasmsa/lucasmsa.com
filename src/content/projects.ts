@@ -59,10 +59,4 @@ export const claudeWork: Project[] = [
     tags: ["Python"],
     url: gh("claude-doc-tdd"),
   },
-  {
-    id: "trilha-agentica",
-    name: "trilha-agentica",
-    tags: ["pt-BR", "Skills"],
-    url: gh("trilha-agentica"),
-  },
 ];
