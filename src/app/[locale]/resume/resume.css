@@ -168,52 +168,13 @@
   font-weight: 700;
 }
 
-.resume-actions {
-  max-width: var(--sheet-width);
-  margin: 0 auto 1.1rem;
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.6rem;
-}
 
-.resume-pdf-link {
-  font-family: var(--serif);
-  font-size: 0.9rem;
-  color: #111111;
-  border: 1px solid #111111;
-  border-radius: 4px;
-  padding: 0.5rem 0.95rem;
-  text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
-}
 
-.resume-pdf-link:hover {
-  background: #111111;
-  color: #ffffff;
-}
 
-.resume-print-button {
-  font-family: var(--serif);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #ffffff;
-  background: #111111;
-  border: 1px solid #111111;
-  border-radius: 4px;
-  padding: 0.5rem 0.95rem;
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
-}
 
-.resume-print-button:hover {
-  background: #ffffff;
-  color: #111111;
-}
 
-.resume-print-button:focus-visible {
-  outline: 2px solid #111111;
-  outline-offset: 2px;
-}
+
+
 
 @media (max-width: 640px) {
   .resume-sheet {
@@ -257,13 +218,9 @@
     gap: 0.55rem;
   }
 
-  .resume-actions {
-    display: none;
-  }
+  
 
-  .resume-pdf-link {
-    display: none;
-  }
+  
 
   .resume-name {
     font-size: 2.05rem;

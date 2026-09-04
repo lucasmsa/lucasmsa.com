@@ -1,5 +1,4 @@
 import { Bullets } from "@/components/resume/bullets";
-import { PrintButton } from "@/components/resume/print-button";
 import { Entry, Section } from "@/components/resume/section";
 import {
   education,
@@ -13,13 +12,6 @@ import {
 export default function ResumePage() {
   return (
     <>
-      <div className="resume-actions">
-        <a className="resume-pdf-link" href="/resume.pdf">
-          Download PDF
-        </a>
-        <PrintButton />
-      </div>
-
       <main className="resume-sheet">
         <header className="resume-masthead">
           <h1 className="resume-name">{profile.name}</h1>
