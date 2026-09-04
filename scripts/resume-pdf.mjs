@@ -5,7 +5,7 @@ const CHROME =
   process.env.CHROME_BIN ??
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const URL = process.env.RESUME_URL ?? "http://localhost:3000/resume";
-const OUT = "public/lucas-moreira.pdf";
+const OUT = "public/resume.pdf";
 
 mkdirSync("public", { recursive: true });
 

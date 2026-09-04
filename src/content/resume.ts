@@ -34,7 +34,7 @@ export const profile = {
   linkedin: "linkedin.com/in/lucasmsa",
   site: "lucasmsa.com",
   summary:
-    "Product engineer with 5+ years across TypeScript, React Native, Ruby on Rails and Python. Builds products end to end, from the first commit to the AI features running in production, and takes on the parts of a codebase most people avoid.",
+    "Product engineer with five years building products end to end, most recently a senior care app taken from its first commit to the AI features running in it.",
 };
 
 export const roles: Role[] = [
@@ -61,7 +61,7 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: "Built the capture paths that get a medical record filled without typing: photographing a medicine box returns its name, presentation and concentration for confirmation, and dictation fills the health-habits sections",
+        text: "Took the typing out of onboarding, where every new member has to complete a long health questionnaire on a phone: photographing a medicine box fills in its name, presentation and concentration, and speaking fills the health and habits answers",
       },
     ],
     stack: [
@@ -171,11 +171,11 @@ export const projects: Project[] = [
     url: "github.com/lucasmsa/crimp-studio",
   },
   {
-    name: "coast-to-cup",
+    name: "hiit-maker",
     tagline:
-      "Which 2026 World Cup group draws the worst logistics, modelling travel, circadian shift, altitude and heat against a base camp",
-    stack: ["React Three Fiber", "Python", "Go"],
-    url: "github.com/lucasmsa/coast-to-cup",
+      "Interval training builder rebuilt on Vite and React 19 as an offline-installable PWA with a gym mode",
+    stack: ["React 19", "Vite", "Zustand", "Playwright"],
+    url: "github.com/lucasmsa/hiit-maker",
   },
   {
     name: "Arkham Theme",
@@ -234,7 +234,7 @@ export const skills = [
 export const languages = [
   { name: "Portuguese", level: "Native" },
   { name: "English", level: "Fluent" },
-  { name: "Spanish", level: "Limited working" },
+  { name: "Spanish", level: "Fluent" },
   { name: "French", level: "Limited working" },
   { name: "German", level: "Elementary" },
 ];

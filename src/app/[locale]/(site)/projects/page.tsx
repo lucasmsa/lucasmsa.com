@@ -31,7 +31,7 @@ export default async function ProjectsPage({
               key={project.id}
               name={project.name}
               description={t(`items.${project.id}`)}
-              tags={project.tags.join(" · ")}
+              tags={project.tags.join(", ")}
               href={project.url}
             />
           ))}
@@ -47,7 +47,7 @@ export default async function ProjectsPage({
               key={project.id}
               name={project.name}
               description={t(`items.${project.id}`)}
-              tags={project.tags.join(" · ")}
+              tags={project.tags.join(", ")}
               href={project.url}
             />
           ))}

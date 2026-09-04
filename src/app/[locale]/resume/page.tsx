@@ -14,7 +14,7 @@ export default function ResumePage() {
   return (
     <>
       <div className="resume-actions">
-        <a className="resume-pdf-link" href="/lucas-moreira.pdf" download>
+        <a className="resume-pdf-link" href="/resume.pdf">
           Download PDF
         </a>
         <PrintButton />
@@ -49,7 +49,7 @@ export default function ResumePage() {
                 meta={`${role.start} — ${role.end}`}
               >
                 <Bullets items={role.bullets} />
-                <p className="resume-stack">{role.stack.join(" · ")}</p>
+                <p className="resume-stack">{role.stack.join(", ")}</p>
               </Entry>
             ))}
           </div>
@@ -64,7 +64,7 @@ export default function ResumePage() {
                 aside={project.url}
               >
                 <p className="resume-stack">
-                  {project.tagline}. {project.stack.join(" · ")}
+                  {project.tagline}. {project.stack.join(", ")}
                 </p>
               </Entry>
             ))}
