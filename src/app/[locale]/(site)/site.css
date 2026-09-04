@@ -282,22 +282,67 @@ a.index-row:hover .index-name {
 }
 
 @media (max-width: 640px) {
+  .nav {
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: center;
+  }
+
+  .hero-controls {
+    justify-content: center;
+  }
+
   .lede {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .lede-bio {
+    max-width: none;
+  }
+
+  .lede-meta {
+    justify-content: center;
   }
 
   .lede img {
     width: 116px;
     height: 116px;
-    justify-self: start;
+    justify-self: center;
+  }
+
+  .section-title,
+  .section-intro {
+    text-align: center;
+  }
+
+  .section-intro {
+    margin-inline: auto;
+  }
+
+  .section-more {
+    display: flex;
+    justify-content: center;
   }
 
   .index-row {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: 0.3rem;
+  }
+
+  .index-desc {
+    max-width: none;
   }
 
   .index-tags {
     white-space: normal;
+  }
+
+  .footer {
+    justify-content: center;
+    text-align: center;
   }
 }

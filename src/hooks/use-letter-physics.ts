@@ -3,20 +3,33 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
 
-type Glyph = { body: Matter.Body; char: string };
+type Glyph = { body: Matter.Body; char: string; ink: Ink; homeX: number };
 
 const WALL = 400;
 const NAME = "LUCAS MOREIRA";
 
-function measure(ctx: CanvasRenderingContext2D, font: string) {
-  ctx.font = font;
-  return (char: string) => {
-    const m = ctx.measureText(char);
-    return {
-      width: m.width,
-      height: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent,
-      ascent: m.actualBoundingBoxAscent,
-    };
+type Ink = {
+  advance: number;
+  left: number;
+  right: number;
+  ascent: number;
+  descent: number;
+};
+
+/**
+ * A glyph's body has to match its ink, not its advance box. Sizing bodies from
+ * the advance and drawing from the "middle" baseline leaves every letter resting
+ * at a slightly different height and overlapping its neighbours, because the ink
+ * sits differently inside the em box for an S than for an A.
+ */
+function inkOf(ctx: CanvasRenderingContext2D, char: string): Ink {
+  const m = ctx.measureText(char);
+  return {
+    advance: m.width,
+    left: m.actualBoundingBoxLeft,
+    right: m.actualBoundingBoxRight,
+    ascent: m.actualBoundingBoxAscent,
+    descent: m.actualBoundingBoxDescent,
   };
 }
 
@@ -68,25 +81,31 @@ export function useLetterPhysics() {
           .getPropertyValue("--font-anton")
           .trim() || "Anton";
       const font = `400 ${size}px ${family}, sans-serif`;
-      const sizeOf = measure(ctx, font);
+      ctx.font = font;
 
       const chars = NAME.split("");
-      const widths = chars.map((c) => (c === " " ? size * 0.28 : sizeOf(c).width));
+      const inks = chars.map((c) => (c === " " ? null : inkOf(ctx, c)));
+      const widths = chars.map((c, i) =>
+        c === " " ? size * 0.28 : inks[i]!.advance,
+      );
       const total = widths.reduce((a, b) => a + b, 0);
 
       let cursor = (w - total) / 2;
       chars.forEach((char, i) => {
         const cw = widths[i];
-        if (char !== " ") {
-          const g = sizeOf(char);
+        const ink = inks[i];
+        if (ink) {
+          const inkWidth = Math.max(ink.left + ink.right, 6);
+          const inkHeight = Math.max(ink.ascent + ink.descent, 6);
+          const homeX = cursor + (ink.right - ink.left) / 2;
           const body = Matter.Bodies.rectangle(
-            cursor + cw / 2,
+            homeX,
             18 + (i % 3) * 26,
-            Math.max(cw * 0.86, 8),
-            Math.max(g.height, 8),
+            inkWidth,
+            inkHeight,
             { restitution: 0.36, friction: 0.4, frictionAir: 0.012, chamfer: { radius: 2 } },
           );
-          glyphs.push({ body, char });
+          glyphs.push({ body, char, ink, homeX });
         }
         cursor += cw;
       });
@@ -123,10 +142,7 @@ export function useLetterPhysics() {
       dropRef.current = () => {
         Matter.Body.setPosition(ceiling, { x: w / 2, y: CEILING_PARKED });
         glyphs.forEach((g, i) => {
-          Matter.Body.setPosition(g.body, {
-            x: (w - total) / 2 + widths.slice(0, i).reduce((a, b) => a + b, 0),
-            y: -40 - i * 22,
-          });
+          Matter.Body.setPosition(g.body, { x: g.homeX, y: -40 - i * 22 });
           Matter.Body.setAngle(g.body, 0);
           Matter.Body.setVelocity(g.body, { x: 0, y: 0 });
           Matter.Body.setAngularVelocity(g.body, 0);
@@ -149,13 +165,18 @@ export function useLetterPhysics() {
         ctx.clearRect(0, 0, w, h);
         ctx.font = font;
         ctx.fillStyle = getComputedStyle(document.body).color;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        for (const { body, char } of glyphs) {
+        ctx.textAlign = "left";
+        ctx.textBaseline = "alphabetic";
+        for (const { body, char, ink } of glyphs) {
           ctx.save();
           ctx.translate(body.position.x, body.position.y);
           ctx.rotate(body.angle);
-          ctx.fillText(char, 0, 0);
+          // Put the glyph's ink centre on the body centre, not its advance box.
+          ctx.fillText(
+            char,
+            -(ink.right - ink.left) / 2,
+            (ink.ascent - ink.descent) / 2,
+          );
           ctx.restore();
         }
       };
