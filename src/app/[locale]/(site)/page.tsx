@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/site/hero";
 import { IndexRow } from "@/components/site/index-row";
+import { paper } from "@/content/writing";
 import { Link } from "@/i18n/routing";
 import { featured } from "@/content/projects";
 
@@ -44,6 +45,7 @@ export default async function HomePage({
             name={w("paperTitle")}
             description={w("paperBlurb")}
             tags={w("paperVenue")}
+            href={paper.url}
           />
           <IndexRow
             name={w("talksTitle")}

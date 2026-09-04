@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { IndexRow } from "@/components/site/index-row";
+import { paper } from "@/content/writing";
 
 export default async function WritingPage({
   params,
@@ -19,6 +20,7 @@ export default async function WritingPage({
           name={t("paperTitle")}
           description={t("paperBlurb")}
           tags={t("paperVenue")}
+          href={paper.url}
         />
         <IndexRow
           name={t("talksTitle")}
