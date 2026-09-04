@@ -7,7 +7,7 @@
 /* ---------- nav ---------- */
 .nav {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   padding-block: 1.6rem 0;
@@ -25,7 +25,7 @@
 
 .nav-logo {
   width: auto;
-  height: 2.1rem;
+  height: 3.2rem;
   opacity: 0.92;
   transition: opacity 0.15s ease;
 }
