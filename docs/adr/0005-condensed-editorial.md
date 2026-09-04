@@ -11,11 +11,11 @@ Accepted
 - Display face is **Anton**, set very large. The name is the masthead, across two
   lines, uppercase.
 - Body face is **Work Sans**.
-- Ground is `#101012`. Foreground `#F5F2ED`, a warm off-white rather than pure
-  white. Muted `#96918A`. Rules `#2A2926`.
-- One accent, `#E2593B`, spent on a single clause in the bio and on nothing else
+- Ground is `#070A0F`. Foreground `#E2ECF5`. Muted `#78889B`. Rules `#152030`.
+- One accent, `#4DE1FF`, spent on a single clause in the bio and on nothing else
   above the fold.
-- The photo prints at real size in the lede, unprocessed, roughly 128 by 158.
+- The photo sits in the lede as a 148px circle, unprocessed, cropped high so both
+  faces stay in frame.
 - Projects and writing are ruled index rows, not cards. No border, no fill, no
   radius, no shadow. A hairline rule separates entries.
 
@@ -53,3 +53,9 @@ grows.
 
 The accent is a single colour used sparingly. Adding a second accent, or spending
 this one on more than one element per screen, breaks the direction.
+
+The direction originally shipped on `#101012` with a `#E2593B` vermilion accent.
+That pairing was rejected on sight as "basically the colour of Anthropic", and
+replaced with the cyan above, chosen from four full-page palette mockups. Ground,
+foreground and accent moved together, since swapping only the accent left the page
+reading the same.

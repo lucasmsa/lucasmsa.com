@@ -62,8 +62,8 @@ export function Hero() {
         <Image
           src="/lucas.jpeg"
           alt=""
-          width={128}
-          height={158}
+          width={148}
+          height={148}
           priority
         />
       </div>

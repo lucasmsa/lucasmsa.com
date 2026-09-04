@@ -126,7 +126,7 @@
 
 .lede {
   display: grid;
-  grid-template-columns: 1fr 128px;
+  grid-template-columns: 1fr 148px;
   gap: clamp(1.5rem, 4vw, 2.5rem);
   align-items: end;
   margin-top: clamp(1.25rem, 3vw, 2rem);
@@ -153,10 +153,12 @@
 }
 
 .lede img {
-  width: 128px;
-  height: 158px;
+  width: 148px;
+  height: 148px;
   object-fit: cover;
-  border-radius: 1px;
+  /* Both faces sit above centre in the source, so a square crop has to ride high. */
+  object-position: 50% 38%;
+  border-radius: 50%;
   justify-self: end;
 }
 
@@ -285,8 +287,8 @@ a.index-row:hover .index-name {
   }
 
   .lede img {
-    width: 104px;
-    height: 128px;
+    width: 116px;
+    height: 116px;
     justify-self: start;
   }
 
