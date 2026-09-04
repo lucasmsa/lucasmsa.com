@@ -17,7 +17,7 @@
     "gravityOn": "restore gravity"
   },
   "home": {
-    "work": "Work",
+    "projects": "Projects",
     "writing": "Writing",
     "allProjects": "All projects",
     "claude": "Claude Code"
@@ -31,7 +31,7 @@
     "items": {
       "crimp-studio": "Climbing wall route setter with draggable 3D holds, procedural route generation and undo/redo history.",
       "coast-to-cup": "Which 2026 World Cup group has the worst logistics: travel, circadian shift, altitude and heat, modelled against a base camp.",
-      "hiit-maker": "Interval training builder, rebuilt on Vite and React 19 as an offline-installable PWA with a gym mode.",
+      "hiit-maker": "Interval training builder, rebuilt on Vite and React 19, installable and usable offline.",
       "vscodethemes-scrapper": "Scrapes the VS Code themes marketplace into a database, then classifies the themes.",
       "arkham-theme": "Dark VS Code theme with 24,000+ installs on the marketplace, based on Transylvania and Mayukai.",
       "pixel-algorithms": "Grid algorithms you can scrub through: A*, flood fill, Bresenham, dithering, marching squares.",

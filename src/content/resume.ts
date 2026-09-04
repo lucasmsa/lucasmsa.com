@@ -173,7 +173,7 @@ export const projects: Project[] = [
   {
     name: "hiit-maker",
     tagline:
-      "Interval training builder rebuilt on Vite and React 19 as an offline-installable PWA with a gym mode",
+      "Interval training builder rebuilt on Vite and React 19, installable and usable offline",
     stack: ["React 19", "Vite", "Zustand", "Playwright"],
     url: "github.com/lucasmsa/hiit-maker",
   },

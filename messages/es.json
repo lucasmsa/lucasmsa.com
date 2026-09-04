@@ -17,7 +17,7 @@
     "gravityOn": "restaurar gravedad"
   },
   "home": {
-    "work": "Trabajos",
+    "projects": "Proyectos",
     "writing": "Publicaciones",
     "allProjects": "Todos los proyectos",
     "claude": "Claude Code"
@@ -31,7 +31,7 @@
     "items": {
       "crimp-studio": "Editor de rutas de escalada con presas 3D arrastrables, generación procedural de rutas e historial de deshacer y rehacer.",
       "coast-to-cup": "Qué grupo del Mundial 2026 tiene la peor logística: viajes, desfase circadiano, altitud y calor, modelados desde una base fija.",
-      "hiit-maker": "Creador de entrenamientos por intervalos, reconstruido en Vite y React 19 como PWA instalable sin conexión, con modo gimnasio.",
+      "hiit-maker": "Creador de entrenamientos por intervalos, reconstruido en Vite y React 19, instalable y funcionando sin conexión.",
       "vscodethemes-scrapper": "Extrae el marketplace de temas de VS Code a una base de datos y luego clasifica los temas.",
       "arkham-theme": "Tema oscuro para VS Code con más de 24.000 instalaciones en el marketplace, basado en Transylvania y Mayukai.",
       "pixel-algorithms": "Algoritmos de cuadrícula que puedes recorrer paso a paso: A*, flood fill, Bresenham, dithering, marching squares.",

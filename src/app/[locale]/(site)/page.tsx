@@ -20,7 +20,7 @@ export default async function HomePage({
       <Hero />
 
       <section className="shell section">
-        <h2 className="section-title">{t("work")}</h2>
+        <h2 className="section-title">{t("projects")}</h2>
         <div className="index">
           {featured.slice(0, 4).map((project) => (
             <IndexRow
