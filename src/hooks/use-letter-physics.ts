@@ -57,6 +57,11 @@ export function useLetterPhysics() {
     let frame = 0;
     let disposed = false;
     const engine = Matter.Engine.create();
+    // Big, fast bodies need more solver passes than the defaults or they settle
+    // interpenetrated after a hard drag.
+    engine.positionIterations = 12;
+    engine.velocityIterations = 10;
+    engine.constraintIterations = 4;
     const glyphs: Glyph[] = [];
 
     const start = async () => {
@@ -135,7 +140,7 @@ export function useLetterPhysics() {
       mouse.pixelRatio = dpr;
       const drag = Matter.MouseConstraint.create(engine, {
         mouse,
-        constraint: { stiffness: 0.18, render: { visible: false } },
+        constraint: { stiffness: 0.12, damping: 0.25, render: { visible: false } },
       });
       Matter.Composite.add(engine.world, drag);
 
@@ -183,9 +188,33 @@ export function useLetterPhysics() {
 
       draw();
 
-      const step = () => {
+      // A fixed 1000/60 per animation frame runs at double speed on a 120Hz
+      // display, which is enough extra travel per step to push letters through
+      // each other. Step on elapsed time instead, and never faster than real time.
+      const STEP = 1000 / 60;
+      const MAX_SPEED = 26;
+      let previous = performance.now();
+      let debt = 0;
+
+      const step = (now: number) => {
         if (disposed) return;
-        Matter.Engine.update(engine, 1000 / 60);
+        debt = Math.min(debt + (now - previous), STEP * 5);
+        previous = now;
+
+        while (debt >= STEP) {
+          Matter.Engine.update(engine, STEP);
+          debt -= STEP;
+          for (const { body } of glyphs) {
+            if (body.speed > MAX_SPEED) {
+              const scale = MAX_SPEED / body.speed;
+              Matter.Body.setVelocity(body, {
+                x: body.velocity.x * scale,
+                y: body.velocity.y * scale,
+              });
+            }
+          }
+        }
+
         draw();
         frame = requestAnimationFrame(step);
       };
