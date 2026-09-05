@@ -14,10 +14,14 @@ export default async function ProjectsPage({
   setRequestLocale(locale);
   const t = await getTranslations("projects");
 
+  // Dedupe on the repository slug, not the display name: plugins are listed under
+  // their short name while the repo is prefixed, and comparing names lets them through.
   const curated = [...featured, ...claudeWork];
-  const featuredNames = new Set(curated.map((project) => project.name));
+  const curatedRepos = new Set(
+    curated.map((project) => project.url.split("/").pop()),
+  );
   const repos = (await fetchRepos()).filter(
-    (repo) => !featuredNames.has(repo.name),
+    (repo) => !curatedRepos.has(repo.name),
   );
 
   return (

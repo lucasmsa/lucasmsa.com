@@ -35,11 +35,14 @@
       "vscodethemes-scrapper": "Scrapes the VS Code themes marketplace into a database, then classifies the themes.",
       "arkham-theme": "Dark VS Code theme with 24,000+ installs on the marketplace, based on Transylvania and Mayukai.",
       "pixel-algorithms": "Grid algorithms you can scrub through: A*, flood fill, Bresenham, dithering, marching squares.",
-      "claude-checkpoint-diagram": "Claude Code plugin that draws a Mermaid checkpoint diagram at each pause in a run.",
-      "claude-doc-tdd": "Claude Code plugin. TDD for facts: an executable check per claim before anything is published."
+      "claude-checkpoint-diagram": "Draws a Mermaid checkpoint diagram at each pause in an agent run.",
+      "claude-doc-tdd": "TDD for facts: an executable check per claim before anything is published.",
+      "claude-visual-options": "Renders three or four real candidates at a visual fork and asks you to pick, instead of choosing for you.",
+      "claude-enhance-me": "Names an architectural fork before the code exists and withholds its own lean, so you reason the tradeoff through.",
+      "claude-handoff": "Writes a session handoff before compaction takes the context, so a fresh session resumes mid-task."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins and skills I use every day.",
+    "claudeIntro": "Plugins I built for Claude Code. Each one installs on its own.",
     "code": "code"
   },
   "writing": {

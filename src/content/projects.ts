@@ -57,14 +57,32 @@ export const featured: Project[] = [
 export const claudeWork: Project[] = [
   {
     id: "claude-checkpoint-diagram",
-    name: "claude-checkpoint-diagram",
-    tags: ["Go", "Mermaid"],
+    name: "checkpoint-diagram",
+    tags: ["Go", "Mermaid", "hooks"],
     url: gh("claude-checkpoint-diagram"),
   },
   {
     id: "claude-doc-tdd",
-    name: "claude-doc-tdd",
-    tags: ["Python"],
+    name: "doc-tdd",
+    tags: ["Python", "hooks"],
     url: gh("claude-doc-tdd"),
+  },
+  {
+    id: "claude-visual-options",
+    name: "visual-options",
+    tags: ["Python", "hooks", "design"],
+    url: gh("claude-visual-options"),
+  },
+  {
+    id: "claude-enhance-me",
+    name: "enhance-me",
+    tags: ["Python", "hooks", "architecture"],
+    url: gh("claude-enhance-me"),
+  },
+  {
+    id: "claude-handoff",
+    name: "handoff",
+    tags: ["Python", "hooks", "context"],
+    url: gh("claude-handoff"),
   },
 ];

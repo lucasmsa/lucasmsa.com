@@ -35,11 +35,14 @@
       "vscodethemes-scrapper": "Extrae el marketplace de temas de VS Code a una base de datos y luego clasifica los temas.",
       "arkham-theme": "Tema oscuro para VS Code con más de 24.000 instalaciones en el marketplace, basado en Transylvania y Mayukai.",
       "pixel-algorithms": "Algoritmos de cuadrícula que puedes recorrer paso a paso: A*, flood fill, Bresenham, dithering, marching squares.",
-      "claude-checkpoint-diagram": "Plugin de Claude Code que dibuja un diagrama de checkpoints en Mermaid en cada pausa de la ejecución.",
-      "claude-doc-tdd": "Plugin de Claude Code. TDD para hechos: una comprobación ejecutable por afirmación antes de publicar nada."
+      "claude-checkpoint-diagram": "Dibuja un diagrama de checkpoints en Mermaid en cada pausa de la ejecución del agente.",
+      "claude-doc-tdd": "TDD para hechos: una comprobación ejecutable por afirmación antes de publicar nada.",
+      "claude-visual-options": "Renderiza tres o cuatro candidatos reales en una decisión visual y te pide elegir, en vez de elegir por ti.",
+      "claude-enhance-me": "Nombra la bifurcación de arquitectura antes de que exista el código y oculta su propia preferencia, para que razones el trade-off.",
+      "claude-handoff": "Escribe el handoff de la sesión antes de que la compactación se lleve el contexto, para que otra sesión continúe a medio trabajo."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins y skills que uso todos los días.",
+    "claudeIntro": "Plugins que hice para Claude Code. Cada uno se instala por separado.",
     "code": "código"
   },
   "writing": {
