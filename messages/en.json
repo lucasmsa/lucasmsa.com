@@ -39,7 +39,8 @@
       "claude-doc-tdd": "Claude Code plugin. TDD for facts: an executable check per claim before anything is published."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins and skills I use every day."
+    "claudeIntro": "Plugins and skills I use every day.",
+    "code": "code"
   },
   "writing": {
     "title": "Writing",

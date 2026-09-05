@@ -3,6 +3,7 @@ export type Repo = {
   description: string | null;
   language: string | null;
   url: string;
+  site: string | null;
   pushedAt: string;
 };
 
@@ -11,6 +12,7 @@ type GitHubRepo = {
   description: string | null;
   language: string | null;
   html_url: string;
+  homepage: string | null;
   pushed_at: string;
   fork: boolean;
   archived: boolean;
@@ -135,6 +137,7 @@ export async function fetchRepos(): Promise<Repo[]> {
       description: repo.description,
       language: repo.language,
       url: repo.html_url,
+      site: repo.homepage?.trim() || null,
       pushedAt: repo.pushed_at,
     }));
 }

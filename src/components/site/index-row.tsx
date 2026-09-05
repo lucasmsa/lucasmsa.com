@@ -3,29 +3,46 @@ export function IndexRow({
   description,
   tags,
   href,
+  codeHref,
+  codeLabel,
 }: {
   name: string;
   description: string;
   tags?: string;
   href?: string;
+  codeHref?: string;
+  codeLabel?: string;
 }) {
-  const content = (
-    <>
+  return (
+    <div className="index-row">
       <div>
-        <div className="index-name">{name}</div>
+        {href ? (
+          <a
+            className="index-name"
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {name}
+          </a>
+        ) : (
+          <span className="index-name">{name}</span>
+        )}
         <p className="index-desc">{description}</p>
       </div>
-      {tags ? <span className="index-tags">{tags}</span> : null}
-    </>
+      <div className="index-meta">
+        {tags ? <span className="index-tags">{tags}</span> : null}
+        {codeHref ? (
+          <a
+            className="index-code"
+            href={codeHref}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {codeLabel}
+          </a>
+        ) : null}
+      </div>
+    </div>
   );
-
-  if (href) {
-    return (
-      <a className="index-row" href={href} target="_blank" rel="noreferrer">
-        {content}
-      </a>
-    );
-  }
-
-  return <div className="index-row">{content}</div>;
 }

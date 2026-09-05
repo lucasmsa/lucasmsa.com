@@ -29,7 +29,9 @@ export default async function HomePage({
               name={project.name}
               description={p(`items.${project.id}`)}
               tags={project.tags.join(", ")}
-              href={project.url}
+              href={project.site ?? project.url}
+              codeHref={project.site ? project.url : undefined}
+              codeLabel={p("code")}
             />
           ))}
         </div>

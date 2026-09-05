@@ -39,7 +39,8 @@
       "claude-doc-tdd": "Plugin de Claude Code. TDD para hechos: una comprobación ejecutable por afirmación antes de publicar nada."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins y skills que uso todos los días."
+    "claudeIntro": "Plugins y skills que uso todos los días.",
+    "code": "código"
   },
   "writing": {
     "title": "Publicaciones",

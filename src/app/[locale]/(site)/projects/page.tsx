@@ -32,7 +32,9 @@ export default async function ProjectsPage({
               name={project.name}
               description={t(`items.${project.id}`)}
               tags={project.tags.join(", ")}
-              href={project.url}
+              href={project.site ?? project.url}
+              codeHref={project.site ? project.url : undefined}
+              codeLabel={t("code")}
             />
           ))}
         </div>
@@ -48,7 +50,9 @@ export default async function ProjectsPage({
               name={project.name}
               description={t(`items.${project.id}`)}
               tags={project.tags.join(", ")}
-              href={project.url}
+              href={project.site ?? project.url}
+              codeHref={project.site ? project.url : undefined}
+              codeLabel={t("code")}
             />
           ))}
         </div>
@@ -65,7 +69,9 @@ export default async function ProjectsPage({
                 name={repo.name}
                 description={repo.description ?? ""}
                 tags={repo.language ?? undefined}
-                href={repo.url}
+                href={repo.site ?? repo.url}
+                codeHref={repo.site ? repo.url : undefined}
+                codeLabel={t("code")}
               />
             ))}
           </div>
