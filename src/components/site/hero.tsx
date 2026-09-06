@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useLetterPhysics } from "@/hooks/use-letter-physics";
+import { WaterPhoto } from "@/components/site/water-photo";
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -59,13 +59,7 @@ export function Hero() {
             <span>{meta("location")}</span>
           </p>
         </div>
-        <Image
-          src="/lucas.jpeg"
-          alt=""
-          width={148}
-          height={148}
-          priority
-        />
+        <WaterPhoto />
       </div>
     </section>
   );

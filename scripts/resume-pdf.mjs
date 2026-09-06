@@ -4,7 +4,7 @@ import { mkdirSync, statSync } from "node:fs";
 const CHROME =
   process.env.CHROME_BIN ??
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const URL = process.env.RESUME_URL ?? "http://localhost:3000/resume";
+const URL = process.env.RESUME_URL ?? "http://localhost:3000/resume-source";
 const OUT = "public/resume.pdf";
 
 // An unstyled render still produces a valid two-page PDF, just a much smaller

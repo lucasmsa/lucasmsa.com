@@ -7,7 +7,6 @@ import { Link, usePathname } from "@/i18n/routing";
 const links = [
   { href: "/projects", key: "projects" },
   { href: "/writing", key: "writing" },
-  { href: "/resume", key: "resume" },
 ] as const;
 
 export function SiteNav() {
@@ -37,6 +36,10 @@ export function SiteNav() {
             {t(link.key)}
           </Link>
         ))}
+        {/* /resume rewrites to the PDF, so this leaves the app rather than
+            navigating a route. next/link would try to client-side route it. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a href="/resume">{t("resume")}</a>
       </nav>
     </header>
   );

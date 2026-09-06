@@ -126,7 +126,7 @@
 
 .lede {
   display: grid;
-  grid-template-columns: 1fr 148px;
+  grid-template-columns: 1fr 300px;
   gap: clamp(1.5rem, 4vw, 2.5rem);
   align-items: end;
   margin-top: clamp(1.25rem, 3vw, 2rem);
@@ -152,14 +152,18 @@
   gap: 0.2rem 1rem;
 }
 
-.lede img {
-  width: 148px;
-  height: 148px;
-  object-fit: cover;
-  /* Both faces sit above centre in the source, so a square crop has to ride high. */
-  object-position: 50% 38%;
-  border-radius: 50%;
+.lede-water {
+  display: block;
   justify-self: end;
+  /* The sea has no shoreline, so its edges fade instead of ending on a hard rectangle. */
+  mask-image:
+    linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
+    linear-gradient(to bottom, #000 62%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
+    linear-gradient(to bottom, #000 62%, transparent);
+  -webkit-mask-composite: source-in;
 }
 
 /* ---------- index rows ---------- */
@@ -321,9 +325,7 @@ a.index-name:hover {
     justify-content: center;
   }
 
-  .lede img {
-    width: 116px;
-    height: 116px;
+  .lede-water {
     justify-self: center;
   }
 
