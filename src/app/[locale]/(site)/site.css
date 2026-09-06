@@ -25,13 +25,26 @@
 
 .nav-logo {
   width: auto;
-  height: 3.2rem;
+  height: 4rem;
   opacity: 0.92;
-  transition: opacity 0.15s ease;
+  /* The hand pivots from where it sits rather than from its middle. */
+  transform-origin: bottom center;
+  transition: opacity 0.15s ease, transform 0.25s ease;
 }
 
 .nav-mark:hover .nav-logo {
   opacity: 1;
+  transform: scale(1.06) rotate(-5deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-logo {
+    transition: opacity 0.15s ease;
+  }
+
+  .nav-mark:hover .nav-logo {
+    transform: none;
+  }
 }
 
 .nav-links {
