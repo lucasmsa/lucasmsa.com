@@ -27,14 +27,25 @@
   width: auto;
   height: 4rem;
   opacity: 0.92;
-  /* The hand pivots from where it sits rather than from its middle. */
-  transform-origin: bottom center;
-  transition: opacity 0.15s ease, transform 0.25s ease;
+  transition: opacity 0.15s ease;
 }
 
 .nav-mark:hover .nav-logo {
   opacity: 1;
-  transform: scale(1.06) rotate(-5deg);
+}
+
+/* Same guard as the code links. A phone has no hover to leave, and a narrow
+   window on a laptop reports hover while the nav is stacked and centred. */
+@media (hover: hover) and (min-width: 641px) {
+  .nav-logo {
+    /* The hand pivots from where it sits rather than from its middle. */
+    transform-origin: bottom center;
+    transition: opacity 0.15s ease, transform 0.25s ease;
+  }
+
+  .nav-mark:hover .nav-logo {
+    transform: scale(1.06) rotate(-5deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
