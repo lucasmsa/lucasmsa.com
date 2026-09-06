@@ -21,11 +21,13 @@ export default async function WritingPage({
           description={t("paperBlurb")}
           tags={t("paperVenue")}
           href={paper.url}
+          mark="page"
         />
         <IndexRow
           name={t("talksTitle")}
           description={t("talksBlurb")}
           tags={t("talksVenue")}
+          mark="page"
         />
       </div>
     </section>

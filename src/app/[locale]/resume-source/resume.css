@@ -1,9 +1,18 @@
+/* Chrome paints the page canvas from the root element, not from the sheet, so
+   globals.css's dark color-scheme showed through below the content on the short
+   second page of the PDF. :root outranks that bare html selector whatever order
+   Next emits the two files in. */
+html:root {
+  color-scheme: light;
+  background: #e9e9ec;
+}
+
 .resume-root {
   --ink: #111111;
   --ink-soft: #3d3d3d;
   --rule: #111111;
   --paper: #ffffff;
-  --serif: "Times New Roman", Times, Georgia, serif;
+  --serif: var(--font-arvo), "Rockwell", Georgia, serif;
   --sheet-width: 8.5in;
   --sheet-pad: 0.62in;
 
@@ -148,6 +157,16 @@
   font-weight: 700;
 }
 
+.resume-nowrap {
+  white-space: nowrap;
+}
+
+.resume-cite {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .resume-stack {
   margin: 0.3rem 0 0;
   font-size: 9.5pt;
@@ -167,14 +186,6 @@
 .resume-additional-row strong {
   font-weight: 700;
 }
-
-
-
-
-
-
-
-
 
 @media (max-width: 640px) {
   .resume-sheet {
@@ -198,10 +209,18 @@
 
 @page {
   size: letter;
-  margin: 0.5in;
+  /* The margin has to live here rather than on the sheet: sheet padding only
+     applies once, so a page break dropped the next page's first line onto the
+     paper edge. */
+  margin: 0.5in 0.6in;
 }
 
 @media print {
+  html:root,
+  body {
+    background: #ffffff;
+  }
+
   .resume-root {
     background: #ffffff;
     padding: 0;
@@ -218,9 +237,6 @@
     gap: 0.55rem;
   }
 
-  
-
-  
 
   .resume-name {
     font-size: 2.05rem;

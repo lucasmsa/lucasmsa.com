@@ -32,6 +32,7 @@ export default async function HomePage({
               href={project.site ?? project.url}
               codeHref={project.site ? project.url : undefined}
               codeLabel={p("code")}
+              mark="pixels"
             />
           ))}
         </div>
@@ -48,11 +49,13 @@ export default async function HomePage({
             description={w("paperBlurb")}
             tags={w("paperVenue")}
             href={paper.url}
+            mark="page"
           />
           <IndexRow
             name={w("talksTitle")}
             description={w("talksBlurb")}
             tags={w("talksVenue")}
+            mark="page"
           />
         </div>
       </section>

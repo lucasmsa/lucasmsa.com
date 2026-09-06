@@ -36,6 +36,7 @@
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 1.4rem;
   font-size: 0.88rem;
 }
@@ -53,12 +54,12 @@
 /* ---------- hero ---------- */
 .hero {
   position: relative;
-  padding-block: clamp(1.5rem, 5vw, 3rem) clamp(2rem, 6vw, 4rem);
+  padding-block: clamp(0.25rem, 1.5vw, 0.75rem) clamp(1.25rem, 4vw, 2.25rem);
 }
 
 .hero-stage {
   position: relative;
-  height: clamp(190px, 30vw, 320px);
+  height: clamp(150px, 22vw, 250px);
   touch-action: none;
   cursor: grab;
 }
@@ -129,7 +130,7 @@
   grid-template-columns: 1fr 300px;
   gap: clamp(1.5rem, 4vw, 2.5rem);
   align-items: end;
-  margin-top: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .lede-bio {
@@ -155,16 +156,10 @@
 .lede-water {
   display: block;
   justify-self: end;
-  /* The sea has no shoreline, so its edges fade instead of ending on a hard rectangle. */
-  mask-image:
-    linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
-    linear-gradient(to bottom, #000 62%, transparent);
-  mask-composite: intersect;
-  -webkit-mask-image:
-    linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
-    linear-gradient(to bottom, #000 62%, transparent);
-  -webkit-mask-composite: source-in;
+  /* The mask is set inline: its circles are measured from the same geometry the
+     canvas is sized by, so the two cannot drift apart. */
 }
+
 
 /* ---------- index rows ---------- */
 .section {
@@ -192,11 +187,11 @@
 }
 
 .index-row {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 0.1rem clamp(0.9rem, 2vw, 1.4rem);
   align-items: baseline;
-  gap: clamp(1rem, 4vw, 3rem);
-  padding-block: 0.85rem;
+  padding-block: 1rem;
   border-top: 1px solid var(--line);
 }
 
@@ -204,8 +199,23 @@
   border-bottom: 1px solid var(--line);
 }
 
+.index-mark {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--line);
+  transition: border-color 0.18s ease;
+}
+
+.index-row:hover .index-mark {
+  border-color: var(--acc);
+}
+
 .index-name {
-  display: inline-block;
+  grid-column: 2;
+  grid-row: 1;
   font-weight: 600;
   font-size: 1.02rem;
   transition: color 0.15s ease;
@@ -215,35 +225,64 @@ a.index-name:hover {
   color: var(--acc);
 }
 
-.index-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.2rem;
-  flex: none;
+.index-tags {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  color: var(--mut);
+  font-size: 0.78rem;
+  white-space: nowrap;
 }
 
 .index-code {
-  font-size: 0.76rem;
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: end;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-size: 0.78rem;
   color: var(--mut);
-  transition: color 0.15s ease;
+  transition: color 0.15s ease, opacity 0.16s ease;
+}
+
+.index-code-mark {
+  letter-spacing: -0.02em;
+}
+
+/* The underline sits on the word alone. On the anchor it would be drawn
+   through the </> mark as well, which reads as one broken rule. */
+.index-code-word {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
 }
 
 .index-code:hover {
   color: var(--acc);
 }
 
+/* Guarded on hover support: on a touch screen the row never enters :hover, so
+   an opacity of 0 there would hide the link with no way to bring it back. */
+@media (hover: hover) {
+  .index-code {
+    opacity: 0;
+  }
+
+  .index-row:hover .index-code,
+  .index-code:focus-visible {
+    opacity: 1;
+  }
+}
+
 .index-desc {
+  grid-column: 2;
+  grid-row: 2;
   margin: 0.15rem 0 0;
   color: var(--mut);
   font-size: 0.9rem;
   max-width: 56ch;
-}
-
-.index-tags {
-  color: var(--mut);
-  font-size: 0.78rem;
-  white-space: nowrap;
 }
 
 .section-more {
@@ -266,7 +305,6 @@ a.index-name:hover {
   padding-block: 1.5rem 2.5rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 1rem;
   font-size: 0.84rem;
   color: var(--mut);
@@ -288,6 +326,9 @@ a.index-name:hover {
 .locale-switch {
   display: flex;
   gap: 0.7rem;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
 }
 
 .locale-switch a {
@@ -344,22 +385,36 @@ a.index-name:hover {
   }
 
   .index-row {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.3rem;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 0.15rem 0.9rem;
+    text-align: left;
   }
 
-  .index-meta {
-    align-items: center;
+  .index-mark {
+    grid-row: 1 / -1;
+    width: 44px;
+    height: 44px;
   }
 
-  .index-desc {
-    max-width: none;
+  .index-tags,
+  .index-code {
+    grid-column: 2;
+    justify-self: start;
   }
 
   .index-tags {
+    grid-row: 3;
     white-space: normal;
+  }
+
+  .index-code {
+    grid-row: 4;
+    opacity: 1;
+  }
+
+  .index-desc {
+    grid-column: 2;
+    max-width: none;
   }
 
   .footer {

@@ -3,6 +3,8 @@ export type Bullet = {
   metric?: string;
   /** Only the few numbers worth stopping on render bold. */
   highlight?: boolean;
+  /** A trailing citation the reader can follow. */
+  link?: { label: string; href: string };
 };
 
 export type Role = {
@@ -27,7 +29,7 @@ export const profile = {
   name: "Lucas Moreira e Silva Alves",
   shortName: "Lucas Moreira",
   title: "Product Engineer",
-  location: "João Pessoa, Brazil",
+  location: "João Pessoa, Paraíba, Brazil",
   email: "lmsa.moreira@gmail.com",
   phone: "+55 (83) 99106-7863",
   github: "github.com/lucasmsa",
@@ -48,7 +50,7 @@ export const roles: Role[] = [
       "Insurance and preventive care that keeps Mexican seniors independent for longer.",
     bullets: [
       {
-        text: "Built the mobile app from scratch and still own it, from the first commit through every release",
+        text: "Built the mobile app from scratch in React Native and Expo, and have been behind every release of it",
       },
       {
         text: "Shipped an OpenAI support-ticket classifier that routes by reason in production, scored daily against human experts",
@@ -155,7 +157,11 @@ export const roles: Role[] = [
         text: "Cleaned and augmented large datasets in Python for deep-learning training on a Portuguese to Libras translator",
       },
       {
-        text: "Contributed to Vlibras-Console for model training and testing; results published in SBC Proceedings",
+        text: "Contributed to Vlibras-Console for model training and testing, with results published in",
+        link: {
+          label: "SEMISH 2021",
+          href: "https://doi.org/10.5753/semish.2021.15818",
+        },
       },
     ],
     stack: ["Python", "Pandas", "React"],
@@ -180,7 +186,7 @@ export const projects: Project[] = [
   {
     name: "Arkham Theme",
     tagline:
-      "Dark VS Code theme, 24,000+ installs on the marketplace at 5.0 stars",
+      "Dark VS Code theme, 24,000+ installs on the marketplace",
     stack: ["VS Code"],
     url: "github.com/lucasmsa/arkham-theme",
   },

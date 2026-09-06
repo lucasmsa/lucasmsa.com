@@ -39,6 +39,7 @@ export default async function ProjectsPage({
               href={project.site ?? project.url}
               codeHref={project.site ? project.url : undefined}
               codeLabel={t("code")}
+              mark="pixels"
             />
           ))}
         </div>
@@ -57,6 +58,7 @@ export default async function ProjectsPage({
               href={project.site ?? project.url}
               codeHref={project.site ? project.url : undefined}
               codeLabel={t("code")}
+              mark="pixels"
             />
           ))}
         </div>
@@ -76,6 +78,7 @@ export default async function ProjectsPage({
                 href={repo.site ?? repo.url}
                 codeHref={repo.site ? repo.url : undefined}
                 codeLabel={t("code")}
+                mark="pixels"
               />
             ))}
           </div>

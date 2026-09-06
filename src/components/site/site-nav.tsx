@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
+import { LocaleSwitch } from "@/components/site/locale-switch";
 
 const links = [
   { href: "/projects", key: "projects" },
@@ -40,6 +41,7 @@ export function SiteNav() {
             navigating a route. next/link would try to client-side route it. */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/resume">{t("resume")}</a>
+        <LocaleSwitch />
       </nav>
     </header>
   );

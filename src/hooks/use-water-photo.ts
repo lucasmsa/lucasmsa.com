@@ -8,11 +8,13 @@ const DAMPING = 0.017;
 const SPREAD = 0.16;
 
 const GRAVITY = 0.42;
-/** Equilibrium submersion is GRAVITY / BUOYANCY, which floats the disc a little under half under. */
-const BUOYANCY = 0.0068;
+/** Equilibrium submersion is GRAVITY / BUOYANCY, so this wets only the bottom eighth of the disc. */
+const BUOYANCY = 0.023;
 
-/** Where the waterline crosses the disc at rest, as a fraction of its diameter. */
-const WATERLINE = 0.58;
+
+/** The far plane sits higher on screen and moves less, which is what reads as distance. */
+const BACK_RISE = 13;
+const BACK_CALM = 0.55;
 
 type Geometry = {
   width: number;
@@ -24,19 +26,50 @@ type Geometry = {
   waterY: number;
 };
 
+/** Clearance above the disc at rest, so bobbing never clips the top of the head. */
+const TOP_ROOM = 26;
+/** Radius of the pool the water is cut to, measured from the waterline. */
+const POOL_RADIUS = 104;
+
 function geometryFor(diameter: number, width: number): Geometry {
-  const bob = Math.round(diameter * 0.13);
   const radius = diameter / 2;
-  const restY = bob + radius;
+  // The disc settles where buoyancy cancels gravity, so the canvas is sized from
+  // that resting position rather than from a guessed padding.
+  const restingSubmersion = GRAVITY / BUOYANCY;
+  const restY = TOP_ROOM + radius;
+  const waterY = restY + radius - restingSubmersion;
   return {
     width,
-    height: diameter + bob * 2,
+    // The canvas ends where the pool does, so the arc is never squared off by
+    // the element's own edge.
+    height: Math.round(waterY + POOL_RADIUS),
     diameter,
     radius,
     centreX: width / 2,
     restY,
-    waterY: restY - radius + diameter * WATERLINE,
+    waterY,
   };
+}
+
+/**
+ * The water is a half-disc centred on the waterline, so its bottom reads as an
+ * arc rather than the canvas edge. Two corrections ride on top of it: a
+ * sideways fade, because the half-disc otherwise ends in two vertical chords at
+ * the waterline, and a circle over the photo, because the pool's own radius
+ * stops short of the top of the head.
+ *
+ * Layers composite onto the ones below them, so the order here is bottom-up:
+ * pool, then the fade it is cut by, then the photo added back.
+ */
+function maskFor(g: Geometry) {
+  return {
+    maskImage: [
+      `radial-gradient(circle ${g.radius + 8}px at ${g.centreX}px ${g.restY}px, #000 95%, transparent)`,
+      "linear-gradient(to right, transparent, #000 26%, #000 74%, transparent)",
+      `radial-gradient(circle ${POOL_RADIUS}px at ${g.centreX}px ${g.waterY}px, #000 46%, transparent)`,
+    ].join(", "),
+    maskComposite: "add, intersect, add",
+  } as const;
 }
 
 export function useWaterPhoto(src: string, diameter: number, width: number) {
@@ -64,27 +97,38 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
     canvas.height = Math.round(g.height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const surface = new Float32Array(COLUMNS);
-    const velocity = new Float32Array(COLUMNS);
     const columnStep = g.width / (COLUMNS - 1);
+
+    const makePlane = () => ({
+      surface: new Float32Array(COLUMNS),
+      velocity: new Float32Array(COLUMNS),
+    });
+    const front = makePlane();
+    const back = makePlane();
+    const planes = [front, back];
 
     const splash = (column: number, force: number) => {
       const i = Math.max(0, Math.min(COLUMNS - 1, Math.round(column)));
-      velocity[i] += force;
-      if (i > 0) velocity[i - 1] += force * 0.5;
-      if (i < COLUMNS - 1) velocity[i + 1] += force * 0.5;
+      for (const plane of planes) {
+        const scale = plane === back ? BACK_CALM : 1;
+        plane.velocity[i] += force * scale;
+        if (i > 0) plane.velocity[i - 1] += force * 0.5 * scale;
+        if (i < COLUMNS - 1) plane.velocity[i + 1] += force * 0.5 * scale;
+      }
     };
 
     const stepWater = () => {
-      for (let i = 0; i < COLUMNS; i++) {
-        velocity[i] += -STIFFNESS * surface[i] - DAMPING * velocity[i];
-        surface[i] += velocity[i];
-      }
-      for (let pass = 0; pass < 2; pass++) {
+      for (const { surface, velocity } of planes) {
         for (let i = 0; i < COLUMNS; i++) {
-          if (i > 0) velocity[i - 1] += SPREAD * (surface[i] - surface[i - 1]);
-          if (i < COLUMNS - 1)
-            velocity[i + 1] += SPREAD * (surface[i] - surface[i + 1]);
+          velocity[i] += -STIFFNESS * surface[i] - DAMPING * velocity[i];
+          surface[i] += velocity[i];
+        }
+        for (let pass = 0; pass < 2; pass++) {
+          for (let i = 0; i < COLUMNS; i++) {
+            if (i > 0) velocity[i - 1] += SPREAD * (surface[i] - surface[i - 1]);
+            if (i < COLUMNS - 1)
+              velocity[i + 1] += SPREAD * (surface[i] - surface[i + 1]);
+          }
         }
       }
     };
@@ -110,16 +154,16 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
       ctx.clip();
     };
 
-    const traceSurface = () => {
+    const traceSurface = (plane: typeof front, rise: number) => {
       ctx.beginPath();
-      ctx.moveTo(0, g.waterY + surface[0]);
+      ctx.moveTo(0, g.waterY - rise + plane.surface[0]);
       for (let i = 1; i < COLUMNS; i++) {
-        ctx.lineTo(i * columnStep, g.waterY + surface[i]);
+        ctx.lineTo(i * columnStep, g.waterY - rise + plane.surface[i]);
       }
     };
 
-    const seaPath = () => {
-      traceSurface();
+    const seaPath = (plane: typeof front, rise: number) => {
+      traceSurface(plane, rise);
       ctx.lineTo(g.width, g.height);
       ctx.lineTo(0, g.height);
       ctx.closePath();
@@ -152,61 +196,47 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
       }
     };
 
-    const fillSea = (top: string, bottom: string) => {
-      const fill = ctx.createLinearGradient(0, g.waterY - 14, 0, g.height);
+    const fillSea = (top: string, bottom: string, rise = 0) => {
+      const fill = ctx.createLinearGradient(0, g.waterY - rise - 14, 0, g.height);
       fill.addColorStop(0, top);
       fill.addColorStop(1, bottom);
       ctx.fillStyle = fill;
       ctx.fill();
     };
 
-    /** Bright flecks where the surface tilts hardest, standing in for a light hitting the crests. */
-    const drawSpecular = () => {
-      ctx.lineWidth = 1.2;
-      for (let i = 1; i < COLUMNS - 1; i++) {
-        const slope = surface[i + 1] - surface[i - 1];
-        const strength = Math.min(Math.abs(slope) * 0.5, 0.7);
-        if (strength < 0.06) continue;
-        ctx.strokeStyle = `rgba(226, 236, 245, ${strength.toFixed(3)})`;
-        ctx.beginPath();
-        ctx.moveTo(i * columnStep, g.waterY + surface[i] - 2.5);
-        ctx.lineTo((i + 1) * columnStep, g.waterY + surface[i + 1] - 2.5);
-        ctx.stroke();
-      }
-    };
-
     const draw = () => {
       ctx.clearRect(0, 0, g.width, g.height);
 
-      // 1. the sea behind everything, spanning the full width
-      seaPath();
-      fillSea("rgba(31, 96, 138, 0.55)", "rgba(12, 44, 70, 0.85)");
+      // Far plane, behind the disc. Higher on screen, calmer, dimmer.
+      seaPath(back, BACK_RISE);
+      fillSea("rgba(24, 74, 108, 0.40)", "rgba(10, 34, 55, 0.52)", BACK_RISE);
+      traceSurface(back, BACK_RISE);
+      ctx.strokeStyle = "rgba(77, 225, 255, 0.24)";
+      ctx.lineWidth = 1.1;
+      ctx.stroke();
 
-      // 2. the disc on top of it
+      // The disc sits between the two planes.
       ctx.save();
       clipDisc();
       drawPhoto(0, null);
       ctx.restore();
 
-      // 3. the submerged slice again, shoved by the local wave slope
+      // The submerged slice, tinted. No horizontal shift: displacing it reads as a
+      // rendering glitch at this size rather than as refraction.
       ctx.save();
       clipDisc();
-      seaPath();
+      seaPath(front, 0);
       ctx.clip();
-      const mid = Math.round(((g.centreX / g.width) * (COLUMNS - 1)) | 0);
-      const slope = (surface[mid] - surface[Math.max(0, mid - 4)]) * 1.6;
-      drawPhoto(slope + 3, "rgba(40, 120, 150, 0.30)");
+      drawPhoto(0, "rgba(40, 120, 150, 0.30)");
       ctx.restore();
 
-      // 4. water in front of the disc, so the submerged half reads as under it
-      seaPath();
-      fillSea("rgba(77, 225, 255, 0.26)", "rgba(16, 62, 96, 0.42)");
-
-      traceSurface();
-      ctx.strokeStyle = "#4de1ff";
+      // Near plane, over the disc. Same hue, brighter and more transparent.
+      seaPath(front, 0);
+      fillSea("rgba(77, 225, 255, 0.17)", "rgba(16, 62, 96, 0.26)");
+      traceSurface(front, 0);
+      ctx.strokeStyle = "rgba(77, 225, 255, 0.72)";
       ctx.lineWidth = 1.4;
       ctx.stroke();
-      drawSpecular();
     };
 
     image.onload = draw;
@@ -226,7 +256,7 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
       previous = now;
       const centreColumn = ((g.centreX / g.width) * (COLUMNS - 1)) | 0;
       while (debt >= STEP) {
-        const level = g.waterY + surface[centreColumn];
+        const level = g.waterY + front.surface[centreColumn];
         const submerged = Math.max(
           0,
           Math.min(discY + g.radius - level, g.diameter),
@@ -255,5 +285,5 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
     };
   }, [src, diameter, width, reducedMotion]);
 
-  return { canvasRef };
+  return { canvasRef, maskStyle: maskFor(geometryFor(diameter, width)) };
 }

@@ -16,9 +16,9 @@ export default function ResumePage() {
         <header className="resume-masthead">
           <h1 className="resume-name">{profile.name}</h1>
           <p className="resume-contact">
-            {profile.location}
-            <span className="resume-sep">•</span>
-            {profile.phone}
+            <span className="resume-nowrap">{profile.location}</span>
+            <br />
+            <span className="resume-nowrap">{profile.phone}</span>
             <span className="resume-sep">•</span>
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
             <span className="resume-sep">•</span>
@@ -41,7 +41,6 @@ export default function ResumePage() {
                 meta={`${role.start} — ${role.end}`}
               >
                 <Bullets items={role.bullets} />
-                <p className="resume-stack">{role.stack.join(", ")}</p>
               </Entry>
             ))}
           </div>

@@ -5,7 +5,16 @@ export function Bullets({ items }: { items: Bullet[] }) {
     <ul className="resume-bullets">
       {items.map((bullet) => (
         <li key={bullet.text}>
-          {bullet.text}.{" "}
+          {bullet.text}
+          {bullet.link ? (
+            <>
+              {" "}
+              <a className="resume-cite" href={bullet.link.href}>
+                {bullet.link.label}
+              </a>
+            </>
+          ) : null}
+          {". "}
           {bullet.metric ? (
             <span className={bullet.highlight ? "resume-metric" : undefined}>
               {bullet.metric}.
