@@ -42,8 +42,7 @@
       "claude-handoff": "Writes a session handoff before compaction takes the context, so a fresh session resumes mid-task."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins I built for Claude Code. Each one adds a skill plus the hooks that make the agent reach for it.",
-    "code": "code"
+    "claudeIntro": "Plugins I built for Claude Code. Each one adds a skill plus the hooks that make the agent reach for it."
   },
   "writing": {
     "title": "Writing",
@@ -52,7 +51,7 @@
     "paperBlurb": "Collaborative corpus tooling for a Portuguese to Libras machine translator, built at LAVID.",
     "paperVenue": "SEMISH 2021",
     "talksTitle": "Information Systems, UFPB Rio Tinto",
-    "talksBlurb": "Two talks given for the Information Systems course.",
+    "talksBlurb": "Two talks for the Information Systems course on the international market in software engineering, and how to build a career abroad.",
     "talksVenue": "Talks"
   },
   "footer": {

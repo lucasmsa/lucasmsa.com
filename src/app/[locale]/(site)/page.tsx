@@ -1,9 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/site/hero";
 import { IndexRow } from "@/components/site/index-row";
-import { paper } from "@/content/writing";
+import { paper, talks } from "@/content/writing";
 import { Link } from "@/i18n/routing";
-import { featured } from "@/content/projects";
+import { featured, repoSlug } from "@/content/projects";
 
 export default async function HomePage({
   params,
@@ -31,7 +31,7 @@ export default async function HomePage({
               tags={project.tags.join(", ")}
               href={project.site ?? project.url}
               codeHref={project.site ? project.url : undefined}
-              codeLabel={p("code")}
+              codeLabel={repoSlug(project)}
               mark="pixels"
             />
           ))}
@@ -55,6 +55,7 @@ export default async function HomePage({
             name={w("talksTitle")}
             description={w("talksBlurb")}
             tags={w("talksVenue")}
+            href={talks.url}
             mark="page"
           />
         </div>

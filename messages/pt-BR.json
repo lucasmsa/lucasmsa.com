@@ -42,8 +42,7 @@
       "claude-handoff": "Escreve o handoff da sessão antes da compactação levar o contexto, para outra sessão continuar no meio do trabalho."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins que fiz para o Claude Code. Cada um adiciona uma skill e os hooks que fazem o agente recorrer a ela.",
-    "code": "código"
+    "claudeIntro": "Plugins que fiz para o Claude Code. Cada um adiciona uma skill e os hooks que fazem o agente recorrer a ela."
   },
   "writing": {
     "title": "Publicações",
@@ -52,7 +51,7 @@
     "paperBlurb": "Ferramenta de corpus colaborativo para um tradutor automático Português-Libras, feita no LAVID.",
     "paperVenue": "SEMISH 2021",
     "talksTitle": "Sistemas de Informação, UFPB Rio Tinto",
-    "talksBlurb": "Duas palestras para o curso de Sistemas de Informação.",
+    "talksBlurb": "Duas palestras para o curso de Sistemas de Informação sobre o mercado internacional de engenharia de software e como construir uma carreira fora.",
     "talksVenue": "Palestras"
   },
   "footer": {

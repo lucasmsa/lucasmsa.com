@@ -30,6 +30,12 @@ const ALWAYS_SHOW = new Set([
   "simple-genetic-algorithm",
 ]);
 
+/**
+ * Repositories whose homepage field points at another project's site. Ignoring it
+ * sends the row to the repository, which is the only page that is actually theirs.
+ */
+const IGNORED_HOMEPAGES = new Set(["a-star-visualizer"]);
+
 /** Anything last touched before this is university-era coursework. */
 const ACTIVE_SINCE = Date.parse("2024-01-01");
 
@@ -137,7 +143,9 @@ export async function fetchRepos(): Promise<Repo[]> {
       description: repo.description,
       language: repo.language,
       url: repo.html_url,
-      site: repo.homepage?.trim() || null,
+      site: IGNORED_HOMEPAGES.has(repo.name)
+        ? null
+        : repo.homepage?.trim() || null,
       pushedAt: repo.pushed_at,
     }));
 }

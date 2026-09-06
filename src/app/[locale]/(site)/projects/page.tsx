@@ -1,6 +1,11 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { IndexRow } from "@/components/site/index-row";
-import { featured, claudeWork } from "@/content/projects";
+import {
+  featured,
+  claudeWork,
+  repoDisplayName,
+  repoSlug,
+} from "@/content/projects";
 import { fetchRepos } from "@/lib/github";
 
 export const revalidate = 86400;
@@ -38,7 +43,7 @@ export default async function ProjectsPage({
               tags={project.tags.join(", ")}
               href={project.site ?? project.url}
               codeHref={project.site ? project.url : undefined}
-              codeLabel={t("code")}
+              codeLabel={repoSlug(project)}
               mark="pixels"
             />
           ))}
@@ -57,7 +62,7 @@ export default async function ProjectsPage({
               tags={project.tags.join(", ")}
               href={project.site ?? project.url}
               codeHref={project.site ? project.url : undefined}
-              codeLabel={t("code")}
+              codeLabel={repoSlug(project)}
               mark="pixels"
             />
           ))}
@@ -72,12 +77,12 @@ export default async function ProjectsPage({
             {repos.map((repo) => (
               <IndexRow
                 key={repo.name}
-                name={repo.name}
+                name={repoDisplayName(repo.name)}
                 description={repo.description ?? ""}
                 tags={repo.language ?? undefined}
                 href={repo.site ?? repo.url}
                 codeHref={repo.site ? repo.url : undefined}
-                codeLabel={t("code")}
+                codeLabel={repo.name}
                 mark="pixels"
               />
             ))}
