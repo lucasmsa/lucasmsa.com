@@ -18,9 +18,9 @@ export default function ResumePage() {
           <p className="resume-contact">
             <span className="resume-nowrap">{profile.location}</span>
             <br />
-            {languages
-              .map((language) => `${language.name} (${language.level})`)
-              .join(", ")}
+            <span className="resume-nowrap">
+              Languages: {languages.join(", ")}
+            </span>
             <br />
             <span className="resume-nowrap">{profile.phone}</span>
             <span className="resume-sep">•</span>

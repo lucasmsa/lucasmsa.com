@@ -255,10 +255,5 @@ export const skills = [
   },
 ];
 
-export const languages = [
-  { name: "Portuguese", level: "Native" },
-  { name: "English", level: "Fluent" },
-  { name: "Spanish", level: "Fluent" },
-  { name: "French", level: "Limited working" },
-  { name: "German", level: "Elementary" },
-];
+/** Only the ones worth claiming in an interview, so no proficiency labels. */
+export const languages = ["Portuguese", "English", "Spanish"];
