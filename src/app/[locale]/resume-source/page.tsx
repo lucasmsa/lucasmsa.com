@@ -25,6 +25,8 @@ export default function ResumePage() {
             <span className="resume-nowrap">{profile.phone}</span>
             <span className="resume-sep">•</span>
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            <br />
+            <a href={`https://${profile.site}`}>{profile.site}</a>
             <span className="resume-sep">•</span>
             <a href={`https://${profile.github}`}>{profile.github}</a>
             <span className="resume-sep">•</span>
@@ -57,6 +59,7 @@ export default function ResumePage() {
                 key={project.name}
                 primary={project.name}
                 aside={project.url}
+                asideHref={project.url ? `https://${project.url}` : undefined}
               >
                 <p className="resume-stack">
                   {project.tagline}.{project.stack ? ` ${project.stack.join(", ")}` : ""}

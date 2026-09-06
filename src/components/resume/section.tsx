@@ -17,12 +17,14 @@ export function Entry({
   primary,
   secondary,
   aside,
+  asideHref,
   meta,
   children,
 }: {
   primary: string;
   secondary?: string;
   aside?: string;
+  asideHref?: string;
   meta?: string;
   children?: React.ReactNode;
 }) {
@@ -30,7 +32,11 @@ export function Entry({
     <article className="resume-entry">
       <div className="resume-entry-row">
         <span className="resume-entry-primary">{primary}</span>
-        {aside ? <span className="resume-entry-meta">{aside}</span> : null}
+        {aside ? (
+          <span className="resume-entry-meta">
+            {asideHref ? <a href={asideHref}>{aside}</a> : aside}
+          </span>
+        ) : null}
       </div>
       {secondary || meta ? (
         <div className="resume-entry-row">

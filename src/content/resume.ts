@@ -37,7 +37,7 @@ export const profile = {
   linkedin: "linkedin.com/in/lucasmsa",
   site: "lucasmsa.com",
   summary:
-    "Product engineer with five years building products end to end, most recently a senior care app taken from its first commit to the AI features running in it.",
+    "Product engineer with six years building products end to end, most recently a senior care app taken from its first commit to the AI features running in it.",
 };
 
 export const roles: Role[] = [
@@ -171,14 +171,14 @@ export const roles: Role[] = [
 
 export const projects: Project[] = [
   {
-    name: "coast-to-cup",
+    name: "Coast to Cup",
     tagline:
       "Which 2026 World Cup path carries the worst logistics, group stage through the final, modelling travel, circadian shift, altitude and heat against a base camp",
     stack: ["React Three Fiber", "Python", "Go"],
     url: "github.com/lucasmsa/coast-to-cup",
   },
   {
-    name: "hiit-maker",
+    name: "HIIT Maker",
     tagline:
       "Interval training builder for workouts you set round by round, installable and usable offline",
     stack: ["React 19", "Vite", "Zustand", "Playwright"],
@@ -191,9 +191,9 @@ export const projects: Project[] = [
     url: "github.com/lucasmsa/arkham-theme",
   },
   {
-    name: "vscode-themes-scrapper",
+    name: "What Is My Theme?",
     tagline:
-      "Drop a screenshot of your editor and it names the theme, in the browser: a CNN embedder exported to ONNX and CIE Lab colour distance over 32,742 crawled themes",
+      "Drop a screenshot of your editor and it names the theme, in the browser: a CNN embedder exported to ONNX and CIE Lab colour distance over 32k crawled themes",
     stack: ["TypeScript", "PyTorch", "ONNX Runtime Web", "AWS S3", "React 19"],
     url: "github.com/lucasmsa/vscodethemes-scrapper",
   },

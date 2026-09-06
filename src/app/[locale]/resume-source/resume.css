@@ -72,11 +72,8 @@ html:root {
 
 .resume-contact a {
   color: inherit;
-  text-decoration: none;
-}
-
-.resume-contact a:hover {
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .resume-sep {
@@ -138,6 +135,12 @@ html:root {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
   color: var(--ink-soft);
+}
+
+.resume-entry-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .resume-bullets {
@@ -266,10 +269,5 @@ html:root {
 
   .resume-contact {
     font-size: 9pt;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
   }
 }
