@@ -12,12 +12,6 @@ const gh = (repo: string) => `https://github.com/lucasmsa/${repo}`;
 
 export const featured: Project[] = [
   {
-    id: "crimp-studio",
-    name: "crimp-studio",
-    tags: ["React", "Three.js", "TypeScript"],
-    url: gh("crimp-studio"),
-  },
-  {
     id: "coast-to-cup",
     name: "coast-to-cup",
     tags: ["TypeScript", "R3F", "Python", "Go"],
