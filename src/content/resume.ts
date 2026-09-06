@@ -51,7 +51,7 @@ export const roles: Role[] = [
       "Insurance and preventive care that keeps Mexican seniors independent for longer.",
     bullets: [
       {
-        text: "Built the mobile app from scratch in React Native and Expo, and have been behind every release of it",
+        text: "Built the mobile app from scratch in React Native and Expo, and have been behind every release and feature of it",
       },
       {
         text: "Shipped an OpenAI support-ticket classifier that routes by reason in production, scored daily against human experts",
@@ -142,7 +142,7 @@ export const roles: Role[] = [
         text: "Built a ZeroMQ microservice backend with NLP.js for intent extraction and Danfo.js for structured data",
       },
       {
-        text: "Automated scheduled website tasks with Puppeteer",
+        text: "Automated Google Calendar scheduling with Puppeteer",
       },
     ],
     stack: ["Node.js", "TypeScript", "ZeroMQ", "NLP.js", "Puppeteer"],
@@ -155,7 +155,7 @@ export const roles: Role[] = [
     end: "Dec 2020",
     bullets: [
       {
-        text: "Cleaned and augmented large datasets in Python for deep-learning training on a Portuguese to Libras translator",
+        text: "Cleaned and augmented large datasets with Python and regex for deep-learning training on a Portuguese to Libras translator",
       },
       {
         text: "Contributed to Vlibras-Console for model training and testing, with results published in",
@@ -173,14 +173,14 @@ export const projects: Project[] = [
   {
     name: "coast-to-cup",
     tagline:
-      "Which 2026 World Cup group draws the worst logistics, modelling travel, circadian shift, altitude and heat against a base camp",
+      "Which 2026 World Cup path carries the worst logistics, group stage through the final, modelling travel, circadian shift, altitude and heat against a base camp",
     stack: ["React Three Fiber", "Python", "Go"],
     url: "github.com/lucasmsa/coast-to-cup",
   },
   {
     name: "hiit-maker",
     tagline:
-      "Interval training builder rebuilt on Vite and React 19, installable and usable offline",
+      "Interval training builder for workouts you set round by round, installable and usable offline",
     stack: ["React 19", "Vite", "Zustand", "Playwright"],
     url: "github.com/lucasmsa/hiit-maker",
   },
@@ -191,10 +191,10 @@ export const projects: Project[] = [
     url: "github.com/lucasmsa/arkham-theme",
   },
   {
-    name: "vscodethemes-scrapper",
+    name: "vscode-themes-scrapper",
     tagline:
-      "Scrapes theme screenshots across seven languages behind bot detection and partitions them into S3, as the collection stage feeding a theme classifier",
-    stack: ["TypeScript", "Puppeteer", "AWS S3", "Jest"],
+      "Names the VS Code theme in a screenshot, in the browser: a CNN embedder exported to ONNX shortlists from 32,742 crawled themes and CIE Lab colour distance ranks them. 42% top-1 and 61% top-5 on 4,000 held-out queries",
+    stack: ["TypeScript", "PyTorch", "ONNX Runtime Web", "React 19"],
     url: "github.com/lucasmsa/vscodethemes-scrapper",
   },
 ];

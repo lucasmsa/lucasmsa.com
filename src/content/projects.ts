@@ -33,8 +33,8 @@ export const featured: Project[] = [
   },
   {
     id: "vscodethemes-scrapper",
-    name: "vscodethemes-scrapper",
-    tags: ["TypeScript", "Puppeteer", "S3"],
+    name: "vscode-themes-scrapper",
+    tags: ["TypeScript", "PyTorch", "ONNX"],
     url: gh("vscodethemes-scrapper"),
     site: "https://whatismytheme.lucasmsa.com",
   },
