@@ -42,7 +42,7 @@
       "claude-handoff": "Writes a session handoff before compaction takes the context, so a fresh session resumes mid-task."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins I built for Claude Code. Each one installs on its own.",
+    "claudeIntro": "Plugins I built for Claude Code. Each one adds a skill plus the hooks that make the agent reach for it.",
     "code": "code"
   },
   "writing": {

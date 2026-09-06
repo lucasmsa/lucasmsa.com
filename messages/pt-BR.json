@@ -42,7 +42,7 @@
       "claude-handoff": "Escreve o handoff da sessão antes da compactação levar o contexto, para outra sessão continuar no meio do trabalho."
     },
     "claude": "Claude Code",
-    "claudeIntro": "Plugins que fiz para o Claude Code. Cada um instala sozinho.",
+    "claudeIntro": "Plugins que fiz para o Claude Code. Cada um adiciona uma skill e os hooks que fazem o agente recorrer a ela.",
     "code": "código"
   },
   "writing": {
