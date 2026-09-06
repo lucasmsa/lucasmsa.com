@@ -99,9 +99,10 @@
   justify-content: flex-end;
   gap: 0.8rem;
   margin-top: 0.7rem;
-  font-size: 0.7rem;
+  font-size: 0.76rem;
   color: var(--mut);
-  opacity: 0.55;
+  /* Resting state still has to be readable, so this fades emphasis, not legibility. */
+  opacity: 0.8;
   transition: opacity 0.2s ease;
 }
 
@@ -116,7 +117,7 @@
   color: var(--mut);
   border-radius: 2px;
   padding: 0.2rem 0.55rem;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -256,16 +257,17 @@ a.index-name:hover {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+  text-decoration-color: color-mix(in srgb, currentColor 75%, transparent);
 }
 
 .index-code:hover {
   color: var(--acc);
 }
 
-/* Guarded on hover support: on a touch screen the row never enters :hover, so
-   an opacity of 0 there would hide the link with no way to bring it back. */
-@media (hover: hover) {
+/* Two guards on the fade. Hover support, because on a touch screen the row never
+   enters :hover and the link would have no way back. And the phone breakpoint,
+   because a narrow window on a laptop still reports hover and would hide it. */
+@media (hover: hover) and (min-width: 641px) {
   .index-code {
     opacity: 0;
   }
@@ -409,7 +411,6 @@ a.index-name:hover {
 
   .index-code {
     grid-row: 4;
-    opacity: 1;
   }
 
   .index-desc {
