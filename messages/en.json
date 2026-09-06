@@ -32,7 +32,7 @@
       "crimp-studio": "Climbing wall route setter with draggable 3D holds, procedural route generation and undo/redo history.",
       "coast-to-cup": "Which 2026 World Cup path carries the worst logistics, group stage through the final: travel, circadian shift, altitude and heat, modelled against a base camp.",
       "hiit-maker": "Interval training builder for workouts you set round by round, installable and usable offline.",
-      "vscodethemes-scrapper": "Names the VS Code theme in a screenshot, in your browser: a CNN embedder and CIE Lab colour ranking over 32,742 crawled themes.",
+      "vscodethemes-scrapper": "Drop a screenshot of your editor and it names the VS Code theme, in your browser, against 32,742 crawled themes.",
       "arkham-theme": "Dark VS Code theme with 24,000+ installs on the marketplace, based on Transylvania and Mayukai.",
       "pixel-algorithms": "Grid algorithms you can scrub through: A*, flood fill, Bresenham, dithering, marching squares.",
       "claude-checkpoint-diagram": "Draws a Mermaid checkpoint diagram at each pause in an agent run.",

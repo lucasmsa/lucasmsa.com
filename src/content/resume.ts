@@ -193,7 +193,7 @@ export const projects: Project[] = [
   {
     name: "vscode-themes-scrapper",
     tagline:
-      "Names the VS Code theme in a screenshot, in the browser: a CNN embedder exported to ONNX shortlists from 32,742 crawled themes and CIE Lab colour distance ranks them. 42% top-1 and 61% top-5 on 4,000 held-out queries",
+      "Drop a screenshot of your editor and it names the theme, in the browser: a CNN embedder exported to ONNX and CIE Lab colour distance over 32,742 crawled themes",
     stack: ["TypeScript", "PyTorch", "ONNX Runtime Web", "AWS S3", "React 19"],
     url: "github.com/lucasmsa/vscodethemes-scrapper",
   },

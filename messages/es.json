@@ -32,7 +32,7 @@
       "crimp-studio": "Editor de rutas de escalada con presas 3D arrastrables, generación procedural de rutas e historial de deshacer y rehacer.",
       "coast-to-cup": "Qué camino en el Mundial 2026 tiene la peor logística, de la fase de grupos a la final: viajes, desfase circadiano, altitud y calor, modelados desde una base fija.",
       "hiit-maker": "Creador de entrenamientos por intervalos, con series y descansos definidos uno a uno, instalable y funcionando sin conexión.",
-      "vscodethemes-scrapper": "Dice cuál es el tema de VS Code a partir de una captura, en tu navegador: un embedder CNN y ranking de color en CIE Lab sobre 32.742 temas recogidos.",
+      "vscodethemes-scrapper": "Suelta una captura de tu editor y dice cuál es el tema de VS Code, en tu navegador, contra 32.742 temas recogidos.",
       "arkham-theme": "Tema oscuro para VS Code con más de 24.000 instalaciones en el marketplace, basado en Transylvania y Mayukai.",
       "pixel-algorithms": "Algoritmos de cuadrícula que puedes recorrer paso a paso: A*, flood fill, Bresenham, dithering, marching squares.",
       "claude-checkpoint-diagram": "Dibuja un diagrama de checkpoints en Mermaid en cada pausa de la ejecución del agente.",
