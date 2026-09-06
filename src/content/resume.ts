@@ -213,9 +213,9 @@ export const skills = [
     items: [
       "TypeScript",
       "React",
-      "Next.js",
       "React Native",
       "Expo",
+      "Next.js",
       "Tailwind",
       "Three.js",
       "Vite",
@@ -223,16 +223,7 @@ export const skills = [
   },
   {
     group: "Backend",
-    items: [
-      "Ruby on Rails",
-      "Node.js",
-      "Python",
-      "FastAPI",
-      "Laravel",
-      "GraphQL",
-      "REST",
-      "LLM APIs",
-    ],
+    items: ["Laravel", "Ruby on Rails", "Node.js", "Python", "GraphQL", "REST"],
   },
   {
     group: "Data & Infra",
@@ -241,10 +232,14 @@ export const skills = [
       "Docker",
       "AWS",
       "Vercel",
-      "Datadog",
-      "Sentry",
       "PostHog",
+      "Sentry",
+      "Datadog",
     ],
+  },
+  {
+    group: "AI & Agents",
+    items: ["LLM APIs", "MCP", "PyTorch", "ONNX Runtime"],
   },
   {
     group: "Interests",
