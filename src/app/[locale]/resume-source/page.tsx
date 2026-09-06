@@ -55,7 +55,7 @@ export default function ResumePage() {
                 aside={project.url}
               >
                 <p className="resume-stack">
-                  {project.tagline}. {project.stack.join(", ")}
+                  {project.tagline}.{project.stack ? ` ${project.stack.join(", ")}` : ""}
                 </p>
               </Entry>
             ))}

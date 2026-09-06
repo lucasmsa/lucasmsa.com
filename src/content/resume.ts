@@ -21,7 +21,8 @@ export type Role = {
 export type Project = {
   name: string;
   tagline: string;
-  stack: string[];
+  /** Omitted when the tagline already names the platform. */
+  stack?: string[];
   url?: string;
 };
 
@@ -187,7 +188,6 @@ export const projects: Project[] = [
     name: "Arkham Theme",
     tagline:
       "Dark VS Code theme, 24,000+ installs on the marketplace",
-    stack: ["VS Code"],
     url: "github.com/lucasmsa/arkham-theme",
   },
   {
