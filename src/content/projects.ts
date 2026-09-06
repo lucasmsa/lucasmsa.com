@@ -20,7 +20,7 @@ export const featured: Project[] = [
   {
     id: "coast-to-cup",
     name: "coast-to-cup",
-    tags: ["TypeScript", "R3F", "Python"],
+    tags: ["TypeScript", "R3F", "Python", "Go"],
     url: gh("coast-to-cup"),
     site: "https://coast-to-cup.pages.dev",
   },
@@ -29,7 +29,7 @@ export const featured: Project[] = [
     name: "hiit-maker",
     tags: ["React 19", "Vite", "Zustand"],
     url: gh("hiit-maker"),
-    site: "https://hiit-maker-lucasmsa.vercel.app",
+    site: "https://hiit-maker.lucasmsa.com",
   },
   {
     id: "vscodethemes-scrapper",
