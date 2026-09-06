@@ -18,6 +18,10 @@ export default function ResumePage() {
           <p className="resume-contact">
             <span className="resume-nowrap">{profile.location}</span>
             <br />
+            {languages
+              .map((language) => `${language.name} (${language.level})`)
+              .join(", ")}
+            <br />
             <span className="resume-nowrap">{profile.phone}</span>
             <span className="resume-sep">•</span>
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
@@ -71,19 +75,13 @@ export default function ResumePage() {
           />
         </Section>
 
-        <Section title="Additional">
+        <Section title="Core Competencies">
           <div className="resume-additional">
             {skills.map((group) => (
               <p key={group.group} className="resume-additional-row">
                 <strong>{group.group}:</strong> {group.items.join(", ")}
               </p>
             ))}
-            <p className="resume-additional-row">
-              <strong>Spoken:</strong>{" "}
-              {languages
-                .map((language) => `${language.name} (${language.level})`)
-                .join(", ")}
-            </p>
           </div>
         </Section>
       </main>

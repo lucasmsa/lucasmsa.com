@@ -194,7 +194,7 @@ export const projects: Project[] = [
     name: "vscode-themes-scrapper",
     tagline:
       "Names the VS Code theme in a screenshot, in the browser: a CNN embedder exported to ONNX shortlists from 32,742 crawled themes and CIE Lab colour distance ranks them. 42% top-1 and 61% top-5 on 4,000 held-out queries",
-    stack: ["TypeScript", "PyTorch", "ONNX Runtime Web", "React 19"],
+    stack: ["TypeScript", "PyTorch", "ONNX Runtime Web", "AWS S3", "React 19"],
     url: "github.com/lucasmsa/vscodethemes-scrapper",
   },
 ];
@@ -209,12 +209,9 @@ export const education = {
 
 export const skills = [
   {
-    group: "Languages",
-    items: ["TypeScript", "Ruby", "Python", "Elixir", "SQL"],
-  },
-  {
     group: "Frontend",
     items: [
+      "TypeScript",
       "React",
       "Next.js",
       "React Native",
@@ -225,15 +222,36 @@ export const skills = [
   },
   {
     group: "Backend",
-    items: ["Ruby on Rails", "Node.js", "FastAPI", "GraphQL", "REST"],
+    items: [
+      "Ruby on Rails",
+      "Node.js",
+      "Python",
+      "FastAPI",
+      "Elixir",
+      "GraphQL",
+      "REST",
+    ],
   },
   {
     group: "Data & Infra",
-    items: ["PostgreSQL", "Docker", "AWS", "Vercel", "Datadog"],
+    items: [
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Vercel",
+      "Datadog",
+      "Sentry",
+      "PostHog",
+    ],
   },
   {
-    group: "Testing",
-    items: ["RSpec", "Vitest", "Jest", "Playwright"],
+    group: "Interests",
+    items: [
+      "Design Engineering",
+      "AI Engineering",
+      "Product Engineering",
+      "Agentic Workflows",
+    ],
   },
 ];
 
