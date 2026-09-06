@@ -215,8 +215,8 @@ export const skills = [
       "React",
       "Next.js",
       "React Native",
+      "Expo",
       "Tailwind",
-      "Framer Motion",
       "Three.js",
       "Vite",
     ],
@@ -231,6 +231,7 @@ export const skills = [
       "Laravel",
       "GraphQL",
       "REST",
+      "LLM APIs",
     ],
   },
   {
