@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { Anton, Work_Sans } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -40,9 +41,15 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${anton.variable} ${workSans.variable}`}>
+    <html
+      lang={locale}
+      className={`${anton.variable} ${workSans.variable}`}
+      suppressHydrationWarning
+    >
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <ThemeProvider attribute="data-theme" enableSystem disableTransitionOnChange>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

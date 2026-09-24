@@ -3,7 +3,15 @@
     "home": "Home",
     "projects": "Projects",
     "writing": "Writing",
-    "resume": "Resume"
+    "resume": "Resume",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "switchTo": {
+        "light": "Switch to light mode",
+        "dark": "Switch to dark mode"
+      }
+    }
   },
   "meta": {
     "now": "Product engineer at Koltin",

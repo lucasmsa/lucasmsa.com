@@ -3,7 +3,15 @@
     "home": "Início",
     "projects": "Projetos",
     "writing": "Publicações",
-    "resume": "Currículo"
+    "resume": "Currículo",
+    "theme": {
+      "light": "Claro",
+      "dark": "Escuro",
+      "switchTo": {
+        "light": "Mudar para o modo claro",
+        "dark": "Mudar para o modo escuro"
+      }
+    }
   },
   "meta": {
     "now": "Engenheiro de produto na Koltin",

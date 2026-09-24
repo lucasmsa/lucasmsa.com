@@ -6,6 +6,9 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const RESUME = "/resume.pdf";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    viewTransition: true,
+  },
   // The PDF has no language, so a locale prefixed path is a wrong URL rather
   // than a missing translation. It used to fall through to the localised app,
   // which has no resume route, and 404.

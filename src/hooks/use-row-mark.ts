@@ -1,25 +1,25 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import {
   markGeometry,
   pageLines,
   pixelCells,
   type MarkKind,
 } from "@/utils/row-mark";
+import { useThemeInk } from "@/hooks/use-theme-ink";
 
 const SIZE = 52;
-const INK = "77, 225, 255";
 
-function drawPixels(ctx: CanvasRenderingContext2D, seed: string) {
+function drawPixels(ctx: CanvasRenderingContext2D, seed: string, colour: string) {
   const step = SIZE / markGeometry.pixelCells;
   for (const cell of pixelCells(seed)) {
-    ctx.fillStyle = `rgba(${INK}, ${cell.alpha})`;
+    ctx.fillStyle = `rgba(${colour}, ${cell.alpha})`;
     ctx.fillRect(cell.column * step, cell.row * step, step, step);
   }
 }
 
-function drawPage(ctx: CanvasRenderingContext2D, seed: string) {
+function drawPage(ctx: CanvasRenderingContext2D, seed: string, colour: string) {
   const margin = 7;
   const column = SIZE - margin * 2;
   const lines = pageLines(seed);
@@ -31,7 +31,7 @@ function drawPage(ctx: CanvasRenderingContext2D, seed: string) {
   let y = margin;
   for (const line of lines) {
     const height = line.thick ? 2 : 1;
-    ctx.fillStyle = `rgba(${INK}, ${line.thick ? 0.8 : 0.42})`;
+    ctx.fillStyle = `rgba(${colour}, ${line.thick ? 0.8 : 0.42})`;
     ctx.fillRect(margin, y, column * line.width, height);
     y += height + leading;
   }
@@ -39,11 +39,14 @@ function drawPage(ctx: CanvasRenderingContext2D, seed: string) {
 
 export function useRowMark(kind: MarkKind, seed: string) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const colour = useThemeInk()?.acc;
 
-  useEffect(() => {
+  // Layout effect: painted before the first frame, so a page change never shows
+  // an empty mark.
+  useLayoutEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
+    if (!canvas || !ctx || !colour) return;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(SIZE * dpr);
@@ -51,9 +54,9 @@ export function useRowMark(kind: MarkKind, seed: string) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, SIZE, SIZE);
 
-    if (kind === "pixels") drawPixels(ctx, seed);
-    else drawPage(ctx, seed);
-  }, [kind, seed]);
+    if (kind === "pixels") drawPixels(ctx, seed, colour);
+    else drawPage(ctx, seed, colour);
+  }, [kind, seed, colour]);
 
   return canvasRef;
 }

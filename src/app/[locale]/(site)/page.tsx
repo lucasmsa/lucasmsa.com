@@ -1,3 +1,4 @@
+import { unstable_ViewTransition as ViewTransition } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/site/hero";
 import { IndexRow } from "@/components/site/index-row";
@@ -21,7 +22,9 @@ export default async function HomePage({
       <Hero />
 
       <section className="shell section">
-        <h2 className="section-title">{t("projects")}</h2>
+        <ViewTransition name="projects-heading">
+          <h2 className="section-title">{t("projects")}</h2>
+        </ViewTransition>
         <div className="index">
           {featured.slice(0, 4).map((project) => (
             <IndexRow
@@ -42,7 +45,9 @@ export default async function HomePage({
       </section>
 
       <section className="shell section">
-        <h2 className="section-title">{t("writing")}</h2>
+        <ViewTransition name="writing-heading">
+          <h2 className="section-title">{t("writing")}</h2>
+        </ViewTransition>
         <div className="index">
           <IndexRow
             name={w("paperTitle")}

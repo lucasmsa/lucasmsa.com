@@ -1,11 +1,19 @@
 @import "tailwindcss";
 
+/* The -rgb triples feed the canvas hooks, which cannot resolve var() or color-mix(). */
 :root {
-  --bg: #070a0f;
-  --fg: #e2ecf5;
-  --mut: #adb9c9;
-  --line: #152030;
-  --acc: #4de1ff;
+  color-scheme: light;
+  --bg: #f1efe9;
+  --fg: #111114;
+  --mut: #4c4b52;
+  --line: #d9d6cd;
+  --acc: #005a78;
+  --acc-rgb: 0, 90, 120;
+  --water-rgb: 0, 90, 120;
+  --sea-mid-rgb: 120, 165, 200;
+  --sea-deep-rgb: 70, 120, 165;
+  --sea-tint-rgb: 120, 165, 200;
+  --logo-filter: invert(1);
 
   --measure: 34ch;
   --gutter: clamp(1.25rem, 5vw, 4rem);
@@ -26,8 +34,19 @@
   box-sizing: border-box;
 }
 
-html {
+:root[data-theme="dark"] {
   color-scheme: dark;
+  --bg: #070a0f;
+  --fg: #e2ecf5;
+  --mut: #adb9c9;
+  --line: #152030;
+  --acc: #4de1ff;
+  --acc-rgb: 77, 225, 255;
+  --water-rgb: 77, 225, 255;
+  --sea-mid-rgb: 24, 74, 108;
+  --sea-deep-rgb: 10, 34, 55;
+  --sea-tint-rgb: 40, 120, 150;
+  --logo-filter: none;
 }
 
 body {

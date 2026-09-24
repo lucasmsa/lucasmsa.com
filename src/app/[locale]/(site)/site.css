@@ -26,6 +26,7 @@
 .nav-logo {
   width: auto;
   height: 4rem;
+  filter: var(--logo-filter);
   opacity: 0.92;
   transition: opacity 0.15s ease;
 }
@@ -65,14 +66,104 @@
   font-size: 0.88rem;
 }
 
-.nav-links a {
-  color: var(--mut);
-  transition: color 0.15s ease;
+/* ---------- clickables ---------- */
+/* Links read as links at rest: a faint accent underline that fills in on hover. */
+.nav-links a,
+.locale-switch a,
+a.index-name,
+.section-more,
+.footer-links a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  text-decoration-color: color-mix(in srgb, var(--acc) 50%, transparent);
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+
+.nav-links a[aria-current="page"],
+.locale-switch a[aria-current="true"] {
+  text-decoration-color: var(--acc);
+  text-decoration-thickness: 2px;
 }
 
 .nav-links a:hover,
-.nav-links a[aria-current="page"] {
+.locale-switch a:hover,
+a.index-name:hover,
+.index-row:hover a.index-name,
+.section-more:hover,
+.footer-links a:hover {
+  color: var(--acc);
+  text-decoration-color: var(--acc);
+  text-decoration-thickness: 2px;
+}
+
+/* Square buttons that fill with ink from where the pointer lands (useInkFill). */
+.ink-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--acc) 60%, var(--line));
+  border-radius: 0;
   color: var(--fg);
+  line-height: 1;
+  padding: 0.55rem 0.8rem;
+  transition:
+    color 0.16s ease 0.06s,
+    transform 0.09s ease;
+}
+
+.ink-button:active {
+  transform: scale(0.97);
+}
+
+.ink-blob {
+  position: absolute;
+  z-index: 0;
+  left: calc(var(--ink-x, 50%) - var(--ink-r, 0px));
+  top: calc(var(--ink-y, 50%) - var(--ink-r, 0px));
+  width: calc(var(--ink-r, 0px) * 2);
+  height: calc(var(--ink-r, 0px) * 2);
+  border-radius: 50%;
+  background: var(--acc);
+  filter: url(#ink-edge);
+  transform: scale(0);
+  transition: transform 0.6s cubic-bezier(0.25, 0.6, 0.2, 1);
+  pointer-events: none;
+}
+
+.ink-label {
+  position: relative;
+  z-index: 1;
+}
+
+.ink-button[data-filled] {
+  color: var(--bg);
+}
+
+.ink-button[data-filled] .ink-blob {
+  transform: scale(1);
+}
+
+.ink-filter {
+  position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-blob {
+    transition: none;
+  }
+}
+
+.theme-toggle {
+  font-size: 0.8rem;
+}
+
+.theme-toggle:disabled {
+  visibility: hidden;
 }
 
 /* ---------- hero ---------- */
@@ -136,18 +227,7 @@
 }
 
 .hero-reset {
-  background: none;
-  border: 1px solid var(--line);
-  color: var(--mut);
-  border-radius: 2px;
-  padding: 0.2rem 0.55rem;
   font-size: 0.76rem;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.hero-reset:hover {
-  color: var(--fg);
-  border-color: var(--mut);
 }
 
 .lede {
@@ -243,11 +323,6 @@
   grid-row: 1;
   font-weight: 600;
   font-size: 1.02rem;
-  transition: color 0.15s ease;
-}
-
-a.index-name:hover {
-  color: var(--acc);
 }
 
 .index-tags {
@@ -267,8 +342,8 @@ a.index-name:hover {
   align-items: baseline;
   gap: 0.35rem;
   font-size: 0.78rem;
-  color: var(--mut);
-  transition: color 0.15s ease, opacity 0.16s ease;
+  color: var(--acc);
+  transition: opacity 0.16s ease;
 }
 
 .index-code-mark {
@@ -284,8 +359,8 @@ a.index-name:hover {
   text-decoration-color: color-mix(in srgb, currentColor 75%, transparent);
 }
 
-.index-code:hover {
-  color: var(--acc);
+.index-code:hover .index-code-word {
+  text-decoration-thickness: 2px;
 }
 
 /* Two guards on the fade. Hover support, because on a touch screen the row never
@@ -314,14 +389,8 @@ a.index-name:hover {
 .section-more {
   margin-top: 1.1rem;
   font-size: 0.88rem;
-  color: var(--mut);
   display: inline-flex;
   gap: 0.4rem;
-  transition: color 0.15s ease;
-}
-
-.section-more:hover {
-  color: var(--acc);
 }
 
 /* ---------- footer ---------- */
@@ -341,13 +410,6 @@ a.index-name:hover {
   gap: 1.2rem;
 }
 
-.footer-links a {
-  transition: color 0.15s ease;
-}
-
-.footer-links a:hover {
-  color: var(--fg);
-}
 
 .locale-switch {
   display: flex;
@@ -357,15 +419,6 @@ a.index-name:hover {
   border-left: 1px solid var(--line);
 }
 
-.locale-switch a {
-  color: var(--mut);
-  transition: color 0.15s ease;
-}
-
-.locale-switch a:hover,
-.locale-switch a[aria-current="true"] {
-  color: var(--fg);
-}
 
 @media (max-width: 640px) {
   .nav {
@@ -445,5 +498,47 @@ a.index-name:hover {
   .footer {
     justify-content: center;
     text-align: center;
+  }
+}
+
+/* ---------- page transitions ---------- */
+/* One overlapping crossfade, so the page never goes blank between routes, while a
+   shared heading flies on its own layer. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(.page-exit) {
+  animation: 240ms ease-out both page-fade-out;
+}
+
+::view-transition-new(.page-enter) {
+  animation: 240ms ease-out both page-fade-in;
+}
+
+::view-transition-group(projects-heading),
+::view-transition-group(writing-heading) {
+  animation-duration: 340ms;
+  animation-timing-function: cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

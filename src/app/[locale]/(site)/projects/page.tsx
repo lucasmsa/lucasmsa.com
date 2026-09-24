@@ -1,3 +1,4 @@
+import { unstable_ViewTransition as ViewTransition } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { IndexRow } from "@/components/site/index-row";
 import {
@@ -32,7 +33,9 @@ export default async function ProjectsPage({
   return (
     <>
       <section className="shell section">
-        <h1 className="section-title">{t("title")}</h1>
+        <ViewTransition name="projects-heading">
+          <h1 className="section-title">{t("title")}</h1>
+        </ViewTransition>
         <p className="section-intro">{t("intro")}</p>
         <div className="index">
           {featured.map((project) => (

@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useLetterPhysics } from "@/hooks/use-letter-physics";
 import { WaterPhoto } from "@/components/site/water-photo";
+import { InkButton } from "@/components/site/ink-button";
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -32,17 +33,16 @@ export function Hero() {
           </div>
           <div className="hero-controls">
             <span>{t("hint")}</span>
-            <button
-              type="button"
+            <InkButton
               className="hero-reset"
               onClick={toggleGravity}
               aria-pressed={weightless}
             >
               {weightless ? t("gravityOn") : t("gravityOff")}
-            </button>
-            <button type="button" className="hero-reset" onClick={reset}>
+            </InkButton>
+            <InkButton className="hero-reset" onClick={reset}>
               {t("reset")}
-            </button>
+            </InkButton>
           </div>
         </>
       )}
