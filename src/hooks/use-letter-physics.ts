@@ -1,12 +1,27 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Matter from "matter-js";
 
 type Glyph = { body: Matter.Body; char: string; ink: Ink; homeX: number };
 
 const WALL = 400;
 const NAME = "LUCAS MOREIRA";
+
+type Pose = { x: number; y: number; angle: number };
+
+/**
+ * Where the letters were when the visitor last left the home page. Module state
+ * outlives the component across client navigations, so coming back shows the name
+ * as it was left instead of dropping it in again. A full reload still drops it.
+ */
+let lastVisit: { width: number; poses: Pose[] } | null = null;
 
 type Ink = {
   advance: number;
@@ -49,7 +64,9 @@ export function useLetterPhysics() {
     return () => query.removeEventListener("change", onChange);
   }, []);
 
-  useEffect(() => {
+  // Layout effect: with fonts already loaded, start() draws the letters before
+  // the first frame, so returning to the page never shows an empty stage.
+  useLayoutEffect(() => {
     const stage = stageRef.current;
     const canvas = canvasRef.current;
     if (!stage || !canvas || reducedMotion) return;
@@ -63,9 +80,10 @@ export function useLetterPhysics() {
     engine.velocityIterations = 10;
     engine.constraintIterations = 4;
     const glyphs: Glyph[] = [];
+    let stageWidth = 0;
 
     const start = async () => {
-      await document.fonts.ready;
+      if (document.fonts.status !== "loaded") await document.fonts.ready;
       if (disposed) return;
 
       const ctx = canvas.getContext("2d");
@@ -133,6 +151,16 @@ export function useLetterPhysics() {
         Matter.Bodies.rectangle(w + WALL / 2, h / 2, WALL, h * 6, { isStatic: true }),
         ceiling,
       ];
+
+      // The stage width sets the letter size, so poses from another width would
+      // put letters inside each other.
+      if (lastVisit?.width === w && lastVisit.poses.length === glyphs.length) {
+        lastVisit.poses.forEach((pose, i) => {
+          Matter.Body.setPosition(glyphs[i].body, { x: pose.x, y: pose.y });
+          Matter.Body.setAngle(glyphs[i].body, pose.angle);
+        });
+      }
+      stageWidth = w;
 
       Matter.Composite.add(engine.world, [...walls, ...glyphs.map((g) => g.body)]);
 
@@ -226,6 +254,16 @@ export function useLetterPhysics() {
     return () => {
       disposed = true;
       cancelAnimationFrame(frame);
+      if (glyphs.length) {
+        lastVisit = {
+          width: stageWidth,
+          poses: glyphs.map(({ body }) => ({
+            x: body.position.x,
+            y: body.position.y,
+            angle: body.angle,
+          })),
+        };
+      }
       Matter.Composite.clear(engine.world, false);
       Matter.Engine.clear(engine);
     };

@@ -1,5 +1,6 @@
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
+import { InkFilter } from "@/components/site/ink-filter";
 import "./site.css";
 
 export default function SiteLayout({
@@ -12,6 +13,7 @@ export default function SiteLayout({
       <SiteNav />
       <main>{children}</main>
       <SiteFooter />
+      <InkFilter />
     </>
   );
 }

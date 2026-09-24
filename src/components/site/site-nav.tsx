@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import { LocaleSwitch } from "@/components/site/locale-switch";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 
 const links = [
   { href: "/projects", key: "projects" },
@@ -42,6 +43,7 @@ export function SiteNav() {
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/resume">{t("resume")}</a>
         <LocaleSwitch />
+        <ThemeToggle />
       </nav>
     </header>
   );

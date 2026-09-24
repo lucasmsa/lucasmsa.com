@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useThemeInk, type ThemeInk } from "@/hooks/use-theme-ink";
 
 const COLUMNS = 96;
 const STIFFNESS = 0.026;
@@ -72,9 +73,27 @@ function maskFor(g: Geometry) {
   } as const;
 }
 
+/** One decoded image per source, kept across mounts so a return visit paints at once. */
+const photos = new Map<string, HTMLImageElement>();
+
+function photoFor(src: string) {
+  let image = photos.get(src);
+  if (!image) {
+    image = new Image();
+    image.src = src;
+    photos.set(src, image);
+  }
+  return image;
+}
+
 export function useWaterPhoto(src: string, diameter: number, width: number) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const ink = useThemeInk();
+  // The loop reads the ref each frame, so a theme change recolours the water
+  // without restarting the simulation.
+  const inkRef = useRef<ThemeInk | null>(null);
+  const redrawRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -84,15 +103,20 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
     return () => query.removeEventListener("change", onChange);
   }, []);
 
-  useEffect(() => {
+  // Declared before the drawing effect so its first paint already has colours.
+  useLayoutEffect(() => {
+    inkRef.current = ink;
+    // With the loop off, nothing else repaints after a theme change.
+    redrawRef.current?.();
+  }, [ink]);
+
+  useLayoutEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
 
     const g = geometryFor(diameter, width);
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.style.width = `${g.width}px`;
-    canvas.style.height = `${g.height}px`;
     canvas.width = Math.round(g.width * dpr);
     canvas.height = Math.round(g.height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -133,8 +157,7 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
       }
     };
 
-    const image = new Image();
-    image.src = src;
+    const image = photoFor(src);
 
     let discY = g.restY;
     let discV = 0;
@@ -205,13 +228,16 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
     };
 
     const draw = () => {
+      const colours = inkRef.current;
+      if (!colours) return;
+      const { water, seaMid, seaDeep, seaTint } = colours;
       ctx.clearRect(0, 0, g.width, g.height);
 
       // Far plane, behind the disc. Higher on screen, calmer, dimmer.
       seaPath(back, BACK_RISE);
-      fillSea("rgba(24, 74, 108, 0.40)", "rgba(10, 34, 55, 0.52)", BACK_RISE);
+      fillSea(`rgba(${seaMid}, 0.40)`, `rgba(${seaDeep}, 0.52)`, BACK_RISE);
       traceSurface(back, BACK_RISE);
-      ctx.strokeStyle = "rgba(77, 225, 255, 0.24)";
+      ctx.strokeStyle = `rgba(${water}, 0.24)`;
       ctx.lineWidth = 1.1;
       ctx.stroke();
 
@@ -227,22 +253,23 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
       clipDisc();
       seaPath(front, 0);
       ctx.clip();
-      drawPhoto(0, "rgba(40, 120, 150, 0.30)");
+      drawPhoto(0, `rgba(${seaTint}, 0.30)`);
       ctx.restore();
 
       // Near plane, over the disc. Same hue, brighter and more transparent.
       seaPath(front, 0);
-      fillSea("rgba(77, 225, 255, 0.17)", "rgba(16, 62, 96, 0.26)");
+      fillSea(`rgba(${water}, 0.17)`, `rgba(${seaDeep}, 0.26)`);
       traceSurface(front, 0);
-      ctx.strokeStyle = "rgba(77, 225, 255, 0.72)";
+      ctx.strokeStyle = `rgba(${water}, 0.72)`;
       ctx.lineWidth = 1.4;
       ctx.stroke();
     };
 
-    image.onload = draw;
+    if (!image.complete) image.addEventListener("load", draw, { once: true });
+    redrawRef.current = draw;
+    draw();
 
     if (reducedMotion) {
-      draw();
       return () => canvas.removeEventListener("pointermove", onPointer);
     }
 
@@ -285,5 +312,11 @@ export function useWaterPhoto(src: string, diameter: number, width: number) {
     };
   }, [src, diameter, width, reducedMotion]);
 
-  return { canvasRef, maskStyle: maskFor(geometryFor(diameter, width)) };
+  const g = geometryFor(diameter, width);
+  // The size has to be in the server markup: set only in the effect, the canvas
+  // starts at zero height and pushes the page down when it grows.
+  return {
+    canvasRef,
+    canvasStyle: { ...maskFor(g), width: g.width, height: g.height },
+  };
 }
