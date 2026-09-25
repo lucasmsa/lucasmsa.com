@@ -39,6 +39,8 @@ The dark palette, type and layout of [ADR-0005](0005-condensed-editorial.md) sta
 - Coming back to home restores the letters where they were left, rather than
   dropping them in again. A full reload still drops them, per ADR-0002.
 
+![Theme, button and navigation flows](assets/0006-solution.png)
+
 ## Context
 
 Light palettes were judged as miniatures of the live home page on the real copy,
