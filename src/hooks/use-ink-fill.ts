@@ -25,10 +25,16 @@ export function useInkFill() {
     ref,
     filled,
     onPointerEnter: (event: PointerEvent<HTMLButtonElement>) => {
+      // The expanding ink is a hover affordance. On touch, pointerenter fires as
+      // part of the tap and can leave the button looking half-filled/stuck.
+      if (event.pointerType === "touch") return;
       const rect = event.currentTarget.getBoundingClientRect();
       fillFrom(event.clientX - rect.left, event.clientY - rect.top);
     },
-    onPointerLeave: () => setFilled(false),
+    onPointerLeave: (event: PointerEvent<HTMLButtonElement>) => {
+      if (event.pointerType === "touch") return;
+      setFilled(false);
+    },
     onFocus: (event: FocusEvent<HTMLButtonElement>) => {
       // A pointer press also focuses the button; only keyboard focus fills from the centre.
       if (!event.currentTarget.matches(":focus-visible")) return;
