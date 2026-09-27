@@ -24,6 +24,11 @@ export function useInkFill() {
   return {
     ref,
     filled,
+    onPointerDown: (event: PointerEvent<HTMLButtonElement>) => {
+      if (event.pointerType === "touch" && "vibrate" in navigator) {
+        navigator.vibrate(10);
+      }
+    },
     onPointerEnter: (event: PointerEvent<HTMLButtonElement>) => {
       // The expanding ink is a hover affordance. On touch, pointerenter fires as
       // part of the tap and can leave the button looking half-filled/stuck.
