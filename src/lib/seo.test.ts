@@ -32,7 +32,10 @@ describe("locale URLs", () => {
     expect(m.alternates?.canonical).toBe("https://lucasmsa.com/pt-BR/projects");
     expect(m.robots).toEqual({ index: true, follow: true });
     expect(m.openGraph).toMatchObject({ url: "https://lucasmsa.com/pt-BR/projects", locale: "pt_BR" });
-    expect(m.twitter).toMatchObject({ card: "summary_large_image" });
+    expect(m.twitter).toMatchObject({ card: "summary_large_image", images: ["https://lucasmsa.com/pt-BR/opengraph-image"] });
+    expect(m.openGraph?.images).toEqual([
+      { url: "https://lucasmsa.com/pt-BR/opengraph-image", width: 1200, height: 630, alt: "T" },
+    ]);
   });
 });
 

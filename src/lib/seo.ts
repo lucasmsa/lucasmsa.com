@@ -38,6 +38,8 @@ export function pageMetadata({
   description: string;
 }): Metadata {
   const url = localeUrl(locale, path);
+  // A page that sets openGraph replaces the parent's, file-based image included, so name it here.
+  const image = { url: localeUrl(locale, "/opengraph-image"), width: 1200, height: 630, alt: title };
   return {
     metadataBase: new URL(SITE_URL),
     title: { absolute: title },
@@ -54,8 +56,9 @@ export function pageMetadata({
       description,
       locale: OG_LOCALE[locale],
       alternateLocale: routing.locales.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: { card: "summary_large_image", title, description, images: [image.url] },
   };
 }
 
