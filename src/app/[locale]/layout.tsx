@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Anton, Work_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
+import { pageMetadata, type Locale } from "@/lib/seo";
 import "../globals.css";
 
 const anton = Anton({
@@ -19,12 +20,21 @@ const workSans = Work_Sans({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://lucasmsa.com"),
-  title: "Lucas Moreira",
-  description:
-    "Engineer. Efficient solutions to hard problems, and interfaces that feel good to use.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
+  const t = await getTranslations({ locale, namespace: "seo" });
+  return pageMetadata({
+    locale: locale as Locale,
+    path: "/",
+    title: t("homeTitle"),
+    description: t("homeDescription"),
+  });
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

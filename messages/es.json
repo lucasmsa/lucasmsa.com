@@ -66,5 +66,16 @@
     "email": "Email",
     "github": "GitHub",
     "linkedin": "LinkedIn"
+  },
+  "seo": {
+    "homeTitle": "Lucas Moreira, ingeniero de producto en João Pessoa, Brasil",
+    "homeDescription": "Lucas Moreira (lucasmsa) es ingeniero de producto en Koltin, en João Pessoa, Brasil. Le gustan las soluciones eficientes a problemas difíciles y las interfaces que dan gusto usar.",
+    "projectsTitle": "Proyectos | Lucas Moreira",
+    "projectsDescription": "Algunas cosas que Lucas Moreira construyó porque el problema era interesante: Coast to Cup, HIIT Maker, What Is My Theme?, Arkham Theme, Pixel Algorithms y plugins para Claude Code.",
+    "writingTitle": "Publicaciones | Lucas Moreira",
+    "writingDescription": "Artículos y charlas de Lucas Moreira, como la herramienta de corpus colaborativo para un traductor automático Portugués-Libras (SEMISH 2021) y charlas en la UFPB Rio Tinto.",
+    "resumeTitle": "Currículum | Lucas Moreira",
+    "byline": "de Lucas Moreira",
+    "ogTagline": "Ingeniero de producto en Koltin"
   }
 }

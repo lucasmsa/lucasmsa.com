@@ -5,6 +5,8 @@ import { IndexRow } from "@/components/site/index-row";
 import { paper, talks } from "@/content/writing";
 import { Link } from "@/i18n/routing";
 import { featured, repoSlug } from "@/content/projects";
+import { JsonLd } from "@/components/site/json-ld";
+import { homeSchema, type Locale } from "@/lib/seo";
 
 export default async function HomePage({
   params,
@@ -19,6 +21,7 @@ export default async function HomePage({
 
   return (
     <>
+      <JsonLd data={homeSchema(locale as Locale)} />
       <Hero />
 
       <section className="shell section">

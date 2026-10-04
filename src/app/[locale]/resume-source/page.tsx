@@ -1,4 +1,6 @@
 import { Bullets } from "@/components/resume/bullets";
+import { JsonLd } from "@/components/site/json-ld";
+import { resumeSchema } from "@/lib/seo";
 import { Entry, Section } from "@/components/resume/section";
 import {
   education,
@@ -12,6 +14,7 @@ import {
 export default function ResumePage() {
   return (
     <>
+      <JsonLd data={resumeSchema()} />
       <main className="resume-sheet">
         <header className="resume-masthead">
           <h1 className="resume-name">{profile.name}</h1>

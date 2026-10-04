@@ -1,0 +1,15 @@
+# Lucas Moreira
+
+> Lucas Moreira (Lucas Moreira e Silva Alves, lucasmsa) is a product engineer at Koltin, based in João Pessoa, Paraíba, Brazil.
+
+## Pages
+
+- [Home](https://lucasmsa.com): who he is and selected work (also in [Português](https://lucasmsa.com/pt-BR) and [Español](https://lucasmsa.com/es))
+- [Projects](https://lucasmsa.com/projects): things he built, with links to the code
+- [Writing](https://lucasmsa.com/writing): papers and talks
+- [Resume (PDF)](https://lucasmsa.com/resume)
+
+## Elsewhere
+
+- [GitHub](https://github.com/lucasmsa)
+- [LinkedIn](https://www.linkedin.com/in/lucasmsa)

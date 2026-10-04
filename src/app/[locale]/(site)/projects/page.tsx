@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import { unstable_ViewTransition as ViewTransition } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { IndexRow } from "@/components/site/index-row";
+import { pageMetadata, projectsSchema, type Locale } from "@/lib/seo";
+import { JsonLd } from "@/components/site/json-ld";
 import {
   featured,
   claudeWork,
@@ -11,6 +14,21 @@ import { fetchRepos } from "@/lib/github";
 
 export const revalidate = 86400;
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "seo" });
+  return pageMetadata({
+    locale: locale as Locale,
+    path: "/projects",
+    title: t("projectsTitle"),
+    description: t("projectsDescription"),
+  });
+}
+
 export default async function ProjectsPage({
   params,
 }: {
@@ -19,6 +37,7 @@ export default async function ProjectsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("projects");
+  const seo = await getTranslations("seo");
 
   // Dedupe on the repository slug, not the display name: plugins are listed under
   // their short name while the repo is prefixed, and comparing names lets them through.
@@ -30,11 +49,21 @@ export default async function ProjectsPage({
     (repo) => !curatedRepos.has(repo.name),
   );
 
+  const listed = curated.map((project) => ({
+    name: project.name,
+    url: project.site ?? project.url,
+    description: t(`items.${project.id}`),
+  }));
+
   return (
     <>
+      <JsonLd data={projectsSchema(locale as Locale, listed)} />
       <section className="shell section">
         <ViewTransition name="projects-heading">
-          <h1 className="section-title">{t("title")}</h1>
+          <h1 className="section-title">
+            {t("title")}
+            <span className="visually-hidden"> {seo("byline")}</span>
+          </h1>
         </ViewTransition>
         <p className="section-intro">{t("intro")}</p>
         <div className="index">

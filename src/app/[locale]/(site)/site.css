@@ -190,7 +190,8 @@ a.index-name:hover,
 }
 
 /* Real text for assistive tech and for anyone who lands mid-simulation. */
-.hero-name-a11y {
+.hero-name-a11y,
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
