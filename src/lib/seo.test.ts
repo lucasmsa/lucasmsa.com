@@ -47,7 +47,7 @@ describe("JSON-LD", () => {
     expect(person).toMatchObject({
       name: "Lucas Moreira",
       alternateName: ["Lucas Moreira e Silva Alves", "lucasmsa"],
-      jobTitle: "Product Engineer",
+      jobTitle: "Software Engineer",
       url: "https://lucasmsa.com",
       sameAs: ["https://github.com/lucasmsa", "https://www.linkedin.com/in/lucasmsa"],
       worksFor: { "@type": "Organization", name: "Koltin" },

@@ -29,7 +29,7 @@ export type Project = {
 export const profile = {
   name: "Lucas Moreira e Silva Alves",
   shortName: "Lucas Moreira",
-  title: "Product Engineer",
+  title: "Software Engineer",
   location: "João Pessoa, Paraíba, Brazil",
   email: "lmsa.moreira@gmail.com",
   phone: "+55 (83) 99106-7863",
@@ -37,13 +37,13 @@ export const profile = {
   linkedin: "linkedin.com/in/lucasmsa",
   site: "lucasmsa.com",
   summary:
-    "Product engineer with six years building products end to end, most recently a senior care app taken from its first commit to the AI features running in it.",
+    "Software engineer with six years building products end to end, most recently a senior care app taken from its first commit to the AI features running in it.",
 };
 
 export const roles: Role[] = [
   {
     company: "Koltin",
-    title: "Product Engineer",
+    title: "Software Engineer",
     location: "Mexico City (remote)",
     start: "Aug 2025",
     end: "Present",

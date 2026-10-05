@@ -14,7 +14,7 @@
     }
   },
   "meta": {
-    "now": "Engenheiro de produto na Koltin",
+    "now": "Engenheiro de software na Koltin",
     "location": "João Pessoa, Brasil"
   },
   "hero": {
@@ -68,14 +68,14 @@
     "linkedin": "LinkedIn"
   },
   "seo": {
-    "homeTitle": "Lucas Moreira, engenheiro de produto em João Pessoa",
-    "homeDescription": "Lucas Moreira (lucasmsa) é engenheiro de produto na Koltin, em João Pessoa, Brasil. Gosta de soluções eficientes para problemas difíceis e de interfaces boas de usar.",
+    "homeTitle": "Lucas Moreira, engenheiro de software em João Pessoa",
+    "homeDescription": "Lucas Moreira (lucasmsa) é engenheiro de software na Koltin, em João Pessoa, Brasil. Gosta de soluções eficientes para problemas difíceis e de interfaces boas de usar.",
     "projectsTitle": "Projetos | Lucas Moreira",
     "projectsDescription": "Algumas coisas que Lucas Moreira construiu porque o problema era interessante: Coast to Cup, HIIT Maker, What Is My Theme?, Arkham Theme, Pixel Algorithms e plugins para o Claude Code.",
     "writingTitle": "Publicações | Lucas Moreira",
     "writingDescription": "Artigos e palestras de Lucas Moreira, como a ferramenta de corpus colaborativo para um tradutor automático Português-Libras (SEMISH 2021) e palestras na UFPB Rio Tinto.",
     "resumeTitle": "Currículo | Lucas Moreira",
     "byline": "de Lucas Moreira",
-    "ogTagline": "Engenheiro de produto na Koltin"
+    "ogTagline": "Engenheiro de software na Koltin"
   }
 }
